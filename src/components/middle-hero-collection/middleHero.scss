@@ -1,0 +1,44 @@
+@use '../../scss' as *;
+
+.middle-hero {
+  margin-top: 40px;
+  width: 100%;
+  &-container {
+    padding: 20px 0;
+    width: 100%;
+    @include flex(initial, initial);
+
+    .middle-hero-image {
+      width: 60%;
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+    .middle-hero-info {
+      width: 40%;
+      padding-left: 2%;
+      @include flex(flex-start, center);
+      flex-direction: column;
+      gap: 15px;
+    }
+    .middle-hero-title {
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .middle-hero-intro {
+      font-size: 13px;
+    }
+    .middle-hero-btn {
+      a {
+        display: block;
+        text-align: center;
+        padding: 5px 10px;
+        background-color: #f0e8e2;
+        color: black;
+        font-size: 12.5px;
+        text-decoration: underline;
+      }
+    }
+  }
+}

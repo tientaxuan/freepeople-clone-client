@@ -1,0 +1,49 @@
+@use '../../scss/' as *;
+
+.more-to-read {
+  margin-top: 30px;
+  &-title {
+    width: 100%;
+    padding: 0 15%;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  &-container {
+    width: 100%;
+    @include flex(initial, initial);
+    gap: 1%;
+    .more-to-read-item {
+      flex: 1;
+      &-img {
+        width: 100%;
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+      &-info {
+        width: 100%;
+        padding: 20px 15px;
+        &-title {
+          font-size: 15px;
+          font-weight: 400;
+          margin-bottom: 20px;
+        }
+        &-intro {
+          font-size: 20px;
+          font-weight: 500;
+          margin-bottom: 15px;
+        }
+        &-sub-intro {
+          font-size: 13px;
+          margin-bottom: 20px;
+        }
+        a {
+          font-size: 13px;
+          color: black;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

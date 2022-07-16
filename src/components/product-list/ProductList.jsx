@@ -12,15 +12,18 @@ export const ProductList = ({ list }) => {
 
   return (
     <div className='product-list'>
-      {(list.intro || list.title) &&
-        (() => (
-          <div className='product-list-title'>
+      {(list.intro || list.title) && (
+        <div className='product-list-title'>
+          {list.intro && (
             <h3 className='product-list-heading-intro'>{list.intro}</h3>
+          )}
+          {list.title && (
             <span className='product-list-trailing-btn'>
               <Link to={list.list_path}>{`Shop ${list.title}`}</Link>
             </span>
-          </div>
-        ))()}
+          )}
+        </div>
+      )}
       <div className='product-list-container'>
         <div className='product-btn prev' ref={prevBtnRef}>
           <img src={chevLef} alt='' />
