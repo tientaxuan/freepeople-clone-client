@@ -1,0 +1,82 @@
+@use '../../scss' as *;
+
+.product-card {
+  width: 100%;
+  &-container {
+    width: 100%;
+    .card-image {
+      width: 100%;
+      height: 28vw;
+      background-repeat: no-repeat;
+      background-position: auto;
+      background-size: cover;
+      position: relative;
+      .quick-shop {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        &-container {
+          .quick-shop__toggle {
+            font-size: 12px;
+            color: black;
+            @include flex(center, center);
+            text-align: center;
+            width: 100%;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.7);
+            display: none;
+          }
+        }
+        &:hover {
+          * {
+            color: crimson;
+          }
+        }
+      }
+      .product-like {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        display: none;
+        &-container {
+          .like-icon {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: white;
+            @include flex(center, center);
+            img {
+              width: 15px;
+            }
+          }
+        }
+        &:hover {
+          img {
+            filter: $filter;
+          }
+        }
+      }
+    }
+    .card-title {
+      font-size: calc(0.5rem + 0.3vw);
+      letter-spacing: 0.02rem;
+      color: inherit;
+      padding: 10px 0;
+    }
+    &.hovering {
+      .card-image {
+        .quick-shop {
+          &-container {
+            .quick-shop__toggle {
+              display: flex;
+            }
+          }
+        }
+        .product-like {
+          display: block;
+        }
+      }
+    }
+  }
+}

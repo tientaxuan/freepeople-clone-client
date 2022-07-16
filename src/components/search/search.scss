@@ -1,0 +1,150 @@
+@use '../../scss/' as *;
+
+.search {
+  width: 250px;
+  height: 60px;
+  position: relative;
+  .search-dropdown {
+    background-color: white;
+    transition: width linear 0.2s;
+    font-size: $font-size;
+    position: absolute;
+    top: 8px;
+    right: 0;
+    width: 100%;
+    z-index: calc($search-overlay-z-index + 1);
+    .search-close {
+      display: none;
+    }
+    &__toggle {
+      position: relative;
+      z-index: calc($search-overlay-z-index + 1);
+      @include flex(center, flex-end);
+      border: 0.5px solid gray;
+      width: 100%;
+      input {
+        font-size: $font-size;
+        width: 100%;
+        outline: 0;
+        border: 0;
+        padding: 10px 20px;
+        &:focus {
+          &::placeholder {
+            color: crimson;
+          }
+        }
+      }
+      .search-clear {
+        margin: 0 8px;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+          color: crimson;
+        }
+      }
+      button {
+        cursor: pointer;
+        border: 0;
+        outline: 0;
+        padding: 13px;
+        background-color: transparent;
+        @include flex(center, center);
+      }
+      &:hover {
+        input {
+          &::placeholder {
+            color: crimson;
+          }
+        }
+        button {
+          color: crimson;
+        }
+      }
+    }
+    &__content {
+      position: relative;
+      z-index: calc($search-overlay-z-index + 1);
+      background-color: white;
+      border: 0.5px solid gray;
+      border-top: 0;
+      width: 100%;
+      height: max-content;
+      font-size: inherit;
+      padding: 20px 15px;
+      &__trending {
+        width: 100%;
+        &__list {
+          margin-top: 10px;
+          @include flex(center, flex-start);
+          flex-wrap: wrap;
+          gap: 10px;
+          &__item {
+            @include flex(center, center);
+            padding: 10px;
+            border: 0.5px solid lightgray;
+            font-size: inherit;
+            gap: 5px;
+            background-color: white;
+            cursor: pointer;
+            &:hover {
+              color: crimson;
+            }
+          }
+        }
+      }
+      &__new-product {
+        width: 100%;
+        margin-top: 20px;
+        &__list {
+          margin-top: 20px;
+          list-style: none;
+          @include flex(flex-start, flex-start);
+          gap: 5px;
+          &__item {
+            cursor: pointer;
+            @include flex(flex-start, flex-start);
+            flex-direction: column;
+            img {
+              width: 100%;
+            }
+            span {
+              margin-top: 10px;
+            }
+            &:hover {
+              color: crimson;
+            }
+          }
+        }
+      }
+
+      display: none;
+    }
+    &::before {
+      display: none;
+      content: '';
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.534);
+      z-index: $search-overlay-z-index;
+    }
+    &.active {
+      &::before {
+        display: block;
+      }
+      width: 350px;
+      .search-dropdown__toggle {
+        border: 0.5px solid black;
+        button {
+          background-color: black;
+          color: white;
+        }
+      }
+      .search-dropdown__content {
+        display: block;
+      }
+    }
+  }
+}

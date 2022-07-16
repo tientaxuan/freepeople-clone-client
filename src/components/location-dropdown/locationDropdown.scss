@@ -1,0 +1,100 @@
+@use '../../scss/' as *;
+
+.location-dropdown {
+  position: relative;
+  &__toggle {
+    @include flex(center, center);
+    text-align: center;
+    font-size: $font-size;
+    font-weight: 300;
+    cursor: pointer;
+    &:hover {
+      color: crimson;
+      img {
+        filter: $filter;
+      }
+    }
+    img {
+      width: 18px;
+      margin-right: 3px;
+    }
+  }
+  &__content {
+    position: absolute;
+    z-index: calc($search-overlay-z-index + 2);
+    transform: translate(0);
+    top: 100%;
+    right: 0;
+    h3 {
+      font-size: $font-size;
+    }
+    p {
+      font-weight: 300;
+      font-size: $font-size;
+      margin-top: 10px;
+      line-height: 20px;
+    }
+    width: 330px;
+    background: white;
+    padding: 20px;
+    border: 0.5px solid lightgray;
+    .country {
+      .country-list {
+        margin-top: 10px;
+        @include flex(center, initial);
+        flex-wrap: wrap;
+        .country-item {
+          cursor: pointer;
+          margin-top: 8px;
+          width: 50%;
+          @include flex(center, initial);
+          img {
+            width: 30px;
+          }
+          p {
+            margin-left: 8px;
+            font-size: 12px;
+          }
+          &:hover {
+            color: crimson;
+          }
+          &.active {
+            color: blue;
+          }
+        }
+      }
+    }
+    &__divider {
+      height: 0.5px;
+      background: lightgray;
+      width: 100%;
+      margin: 20px 0;
+    }
+    .currency {
+      .currency-list {
+        margin-top: 15px;
+        @include flex(center, initial);
+        flex-wrap: wrap;
+        gap: 10px;
+        .currency-item {
+          text-decoration: none;
+          list-style: none;
+          font-size: $font-size;
+          width: 20%;
+          font-weight: 300;
+          cursor: pointer;
+          &:hover {
+            color: crimson;
+          }
+          &.active {
+            color: blue;
+          }
+        }
+      }
+    }
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}

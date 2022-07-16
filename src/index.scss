@@ -1,0 +1,31 @@
+@use './scss/' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-family;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+:root {
+  --margin-right: 10vw;
+  --margin-left: 10vw;
+  --margin-right-big: 3vw;
+  --margin-left-big: 3vw;
+  @include big {
+    --margin-right: var(--margin-right-big);
+    --margin-left: var(--margin-left-big);
+  }
+}
+
+body {
+  overflow-x: hidden;
+}

@@ -1,0 +1,13 @@
+@use '../../scss/' as *;
+
+.shopping-bag {
+  margin-left: 15px;
+  cursor: pointer;
+  img {
+    font-size: 30px;
+    height: 20px;
+    &:hover {
+      filter: $filter;
+    }
+  }
+}

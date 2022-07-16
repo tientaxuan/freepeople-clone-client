@@ -1,0 +1,214 @@
+@use '../../scss/' as *;
+
+.modal {
+  &-container {
+    width: 60%;
+    height: 680px;
+    max-height: 90vh;
+    max-width: 850px;
+    background: #fefbfa;
+    position: fixed;
+    z-index: 3001;
+    top: 50%;
+    left: 50%;
+    transform: translate((-50%, -50%));
+    .modal-content {
+      width: 100%;
+      height: 100%;
+      padding: 60px 40px;
+      @include flex(center, center);
+      gap: 20px;
+      & > * {
+        width: 50%;
+        height: 100%;
+      }
+      .modal-slider {
+        position: relative;
+        & > * {
+          height: 100%;
+        }
+        .modal-slide {
+          width: 100%;
+          height: 100%;
+          background-repeat: no-repeat;
+          background-position: auto;
+          background-size: cover;
+        }
+        &-btn {
+          position: absolute;
+          top: 50%;
+          z-index: 10;
+          cursor: pointer;
+          width: 25px;
+          height: 30px;
+          @include flex(center, center);
+          background-color: #fefbfa;
+          img {
+            width: 50%;
+          }
+          &.prev {
+            left: 0;
+            transform: translateY(-50%);
+          }
+          &.next {
+            right: 0;
+            transform: translateY(-50%) rotate(180deg);
+          }
+          &.is-end {
+            img {
+              filter: invert(56%) sepia(2%) saturate(11%) hue-rotate(321deg)
+                brightness(90%) contrast(90%);
+            }
+          }
+        }
+      }
+      .modal-info {
+        // background-color: red;
+        h2 {
+          font-weight: 300;
+          font-size: 21px;
+          letter-spacing: 0.3px;
+        }
+        .modal-price {
+          margin-top: 10px;
+          span {
+            font-size: 18px;
+            letter-spacing: 0.3px;
+          }
+        }
+        &-divider {
+          width: 100%;
+          height: 0.5px;
+          background-color: gray;
+          margin-top: 25px;
+          margin-bottom: 20px;
+        }
+        .modal-color {
+          .color-name {
+            font-size: 13px;
+          }
+          .color-thumb {
+            margin-top: 10px;
+            span {
+              cursor: pointer;
+              display: inline-block;
+              margin-right: 8px;
+              img {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                padding: 2px;
+              }
+              &:hover {
+                img {
+                  width: 24.5px;
+                  height: 24.5px;
+                  border: 0.5px solid crimson;
+                }
+              }
+              &.modal-color-active {
+                img {
+                  width: 24.5px;
+                  height: 24.5px;
+                  border: 0.5px solid black;
+                }
+              }
+            }
+          }
+        }
+        .modal-size {
+          &-title {
+            font-size: 13px;
+          }
+          &-selector {
+            @include flex(center, initial);
+            gap: 5px;
+            .modal-size-option {
+              cursor: pointer;
+              margin-top: 10px;
+              @include flex(center, center);
+              text-align: center;
+              width: 40px;
+              height: 40px;
+              background-color: #fefbfa;
+              border: 0.5px solid gray;
+              &:hover {
+                border-color: crimson;
+                * {
+                  color: crimson;
+                }
+              }
+              span {
+                font-size: 13px;
+                font-weight: 300;
+              }
+            }
+          }
+        }
+        .modal-info-btn {
+          cursor: pointer;
+          width: 100%;
+          height: 45px;
+          margin-top: 20px;
+          font-size: 13px;
+          font-weight: 300;
+          transition: all 0.5s ease;
+          &.modal-add-to-bag {
+            background-color: rgb(255, 175, 175);
+            border: 0;
+            outline: 0;
+
+            &:hover {
+              background-color: #fefbfa;
+              border: 0.5px solid black;
+            }
+          }
+          &.modal-view-full-details {
+            background-color: #fefbfa;
+            border: 0.5px solid black;
+            &:hover {
+              background-color: rgb(255, 175, 175);
+              outline: 0;
+              border: 0;
+            }
+          }
+        }
+      }
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 3002;
+      cursor: pointer;
+      span {
+        @include flex(center, center);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        transition: all 0.3s ease;
+        img {
+          width: 20px;
+          filter: $filter;
+        }
+        &:hover {
+          border: 0.5px solid crimson;
+        }
+      }
+    }
+  }
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 3000;
+  }
+  display: none;
+  &.active {
+    display: block;
+  }
+}

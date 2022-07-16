@@ -1,0 +1,58 @@
+@use '../../scss/' as *;
+.announcement {
+  height: 40px;
+  width: 100%;
+  @include flex(center, center);
+  background: $announcement-bg;
+  position: relative;
+  .btn {
+    cursor: pointer;
+    z-index: 10;
+    @include flex(center, center);
+    position: absolute;
+    font-size: 35px;
+    color: gray;
+    height: 100%;
+    &.announcement-next {
+      width: 30px;
+      top: 0;
+      right: 30px;
+      transform: rotate(180deg);
+      img {
+        width: 12px;
+      }
+      &:hover {
+        img {
+          filter: $filter;
+        }
+      }
+    }
+    &.announcement-prev {
+      width: 30px;
+      top: 50%;
+      left: 30px;
+      transform: translateY(-50%);
+      img {
+        width: 12px;
+      }
+      &:hover {
+        img {
+          filter: $filter;
+        }
+      }
+    }
+  }
+  .announce-item {
+    @include flex(center, center);
+    span {
+      font-size: $font-size;
+      font-weight: 600;
+    }
+    a {
+      font-size: $font-size;
+      margin-left: 20px;
+      text-decoration: underline;
+      color: black;
+    }
+  }
+}

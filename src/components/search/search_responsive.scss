@@ -1,0 +1,52 @@
+@use '../../scss' as *;
+
+@include medium {
+  .search {
+    width: 100%;
+    .search-dropdown {
+      .search-close {
+        cursor: pointer;
+        position: relative;
+        z-index: calc($search-overlay-z-index + 1);
+        img {
+          height: 25px;
+        }
+        margin-right: 10px;
+        &:hover {
+          img {
+            filter: $filter;
+          }
+        }
+      }
+      &__content {
+        width: 100%;
+        max-height: calc(100% - 90px);
+        overflow-y: auto;
+        border: 0;
+      }
+      &.active {
+        max-width: none;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        transition: all 0.2s ease;
+        max-height: 100%;
+        .search-close {
+          display: block;
+          height: 50px;
+          @include flex(center, flex-end);
+          i {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.prevent-body-scroll {
+  overflow: hidden;
+}

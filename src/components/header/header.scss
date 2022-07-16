@@ -1,0 +1,157 @@
+@use '../../scss/' as *;
+
+.header {
+  width: 100%;
+  background: white;
+  position: relative;
+  z-index: $header-z-index;
+  zinde .header-first-bar {
+    width: 100%;
+    transform: scaleY(1);
+    transition: all 0.1s ease;
+  }
+  .header-second-bar {
+    transform: scaleY(1);
+    transition: all 0.1s ease;
+    position: relative;
+    z-index: calc($search-overlay-z-index + 2);
+    @include flex(center, flex-end);
+    padding: 10px var(--margin-right);
+    font-size: $font-size;
+    &__sign {
+      @include flex(center, center);
+      margin-left: 10px;
+      cursor: pointer;
+      &:hover {
+        * {
+          color: crimson;
+        }
+        img {
+          filter: $filter;
+        }
+      }
+      img {
+        width: 18px;
+      }
+      a {
+        color: black;
+        font-weight: 300;
+      }
+    }
+  }
+  .header-main {
+    transition: all 0.1s ease;
+    width: 100%;
+    &__upper {
+      padding: 1px var(--margin-right) 0;
+      background: white;
+      height: 70px;
+      @include flex(center, space-between);
+      &__left {
+        height: 100%;
+        width: 50%;
+        @include flex(center, flex-start);
+        div {
+          position: relative;
+          cursor: pointer;
+          height: 100%;
+          @include flex(center, center);
+          margin-right: 20px;
+          padding: 20px;
+          &::after {
+            content: '';
+            width: calc(100% + 1px);
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+          &:hover::after {
+            background-color: transparent;
+          }
+        }
+        .active {
+          border-top: 3px solid crimson;
+          border-left: 0.5px solid lightgray;
+          border-right: 0.5px solid lightgray;
+          &::after {
+            background-color: transparent;
+            border-bottom: 1px solid white;
+          }
+        }
+      }
+      &__right {
+        // background: lightblue;
+        @include flex(center, flex-end);
+        width: 50%;
+        height: 100%;
+        padding: 5px 0px;
+        .hamburger {
+          width: 30px;
+          height: 30px;
+          background: white;
+          margin: 0 10px;
+          cursor: pointer;
+          @include flex(center, center);
+          flex-direction: column;
+          gap: 7px;
+          display: none;
+          transform: translateY(-1px);
+          &:hover {
+            .hamburger-middle {
+              background-color: crimson;
+            }
+            &::before {
+              background-color: crimson;
+            }
+            &::after {
+              background-color: crimson;
+            }
+          }
+          .hamburger-middle {
+            display: block;
+            width: 75%;
+            height: 1px;
+            background-color: black;
+            position: relative;
+          }
+          &::before {
+            content: '';
+            display: block;
+            width: 75%;
+            height: 1px;
+            background-color: black;
+          }
+          &::after {
+            content: '';
+            display: block;
+            width: 75%;
+            height: 1px;
+            background-color: black;
+          }
+        }
+      }
+    }
+    &__lower {
+      height: 60px;
+      background-color: white;
+      padding: 10px var(--margin-right);
+      border-top: 0.5px solid lightgray;
+      @include flex(center, initial);
+    }
+  }
+  &.shrink {
+    .header-first-bar {
+      transform: scaleY(0);
+    }
+    .header-second-bar {
+      transform: scaleY(0);
+    }
+    .header-main {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+  }
+}

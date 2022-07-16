@@ -1,0 +1,312 @@
+@use '../../scss' as *;
+
+@include medium {
+  .header-menu-container {
+    &__inner {
+      box-shadow: -2px 0px 5px 1px rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 350px;
+      height: 100%;
+      background: white;
+      z-index: calc($super-nav-overlay-z-index + 1);
+      transform: translateX(100%);
+      transition: all 0.2s linear;
+      .header-menu-close {
+        // box-shadow: -2px 0px 5px 1px rgba(0, 0, 0, 0.68);
+        position: absolute;
+        top: 0;
+        left: -5px;
+        transform: translateX(-100%);
+        outline: 0;
+        border: 0;
+        background-color: transparent;
+        cursor: pointer;
+
+        img {
+          transition: all 0.1s ease;
+          width: 25px;
+          &:hover {
+            border: 0.5px solid crimson;
+            border-radius: 50%;
+            filter: $filter;
+          }
+        }
+      }
+      .header-menu {
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        &-item {
+          margin: 0;
+          font-size: 13px;
+          display: block;
+          width: 100%;
+          padding: 10px 30px;
+          border-bottom: 0.5px solid lightgray;
+          * {
+            color: black;
+          }
+          &:hover {
+            border-bottom: 0.5px solid lightgray;
+          }
+          &__toggle {
+            cursor: pointer;
+            padding: 0;
+            @include flex(center, space-between);
+            &__icon {
+              display: block;
+              font-size: 20px;
+            }
+            a {
+              pointer-events: none;
+            }
+            &:hover {
+              * {
+                color: crimson;
+              }
+              text-decoration: underline crimson;
+              img {
+                filter: $filter;
+              }
+            }
+          }
+          &__content {
+            background-color: #fefbfa;
+            display: flex !important;
+            background: white;
+            border: 0;
+            position: absolute;
+            top: 0;
+            left: 0 !important;
+            height: 100%;
+            width: 100%;
+            overflow: auto;
+            flex-direction: column;
+            transition: all 0.2s linear;
+            transform: translateX(100%);
+            // &.active {
+            //   display: none;
+            // }
+            &__heading {
+              cursor: pointer;
+              text-align: center;
+              @include flex(center, space-between);
+              margin: 0;
+              padding: 15px;
+              border-bottom: 0.5px solid lightgray;
+              position: sticky;
+              top: 0;
+              background-color: #fefbfa;
+              .heading-toggle {
+                @include flex(center, center);
+                padding: 5px;
+                cursor: pointer;
+                img {
+                  width: 8px;
+                }
+              }
+              .item-title-text {
+                flex: 1;
+                font-weight: 500;
+              }
+              &:hover {
+                * {
+                  color: crimson;
+                  img {
+                    filter: $filter;
+                  }
+                }
+              }
+            }
+            &.mobile-active {
+              &.menu-item-opened {
+                transform: translateX(0);
+              }
+            }
+            &__subcontent {
+              border: 0;
+              padding: 0;
+              width: 100%;
+              &__title {
+                text-align: center;
+                @include flex(center, space-between);
+                margin: 0;
+                padding: 15px;
+                border-bottom: 0.5px solid lightgray;
+                div {
+                  text-align: center;
+                }
+                i {
+                  font-size: 20px;
+                }
+                .subcontent-toggle {
+                  display: none;
+                }
+                .subcontent-open {
+                  display: block;
+                  cursor: pointer;
+                }
+                &.main-title {
+                  display: none;
+                }
+                &:hover {
+                  i {
+                    color: crimson;
+                  }
+                }
+              }
+              &__list {
+                @include flex(initial, initial);
+                width: 100%;
+                flex-direction: column;
+                &__item {
+                  margin: 0;
+                  padding: 15px 15px;
+                  border-bottom: 0.5px solid lightgray;
+                  width: 100%;
+                }
+                &.main-content {
+                  background: white;
+                  width: 100%;
+                  & > * {
+                    width: 100%;
+                  }
+                }
+                &.other-content {
+                  padding-left: 10px;
+                  display: none;
+                  &.active {
+                    display: flex;
+                  }
+                  &.image-content {
+                    display: flex;
+                  }
+                }
+              }
+            }
+          }
+          &.location-item {
+            display: block;
+            .header-menu-item__toggle {
+              .location-item__text {
+                @include flex(center, center);
+                text-align: center;
+                img {
+                  width: 18px;
+                }
+              }
+            }
+            .header-menu-item__content {
+              &__heading {
+                .item-title-text {
+                  .location-item__text {
+                    @include flex(center, center);
+                    img {
+                      width: 15px;
+                    }
+                  }
+                }
+              }
+              .location-item__content {
+                flex: 1;
+                @include flex(initial, initial);
+                width: 100%;
+                &__country,
+                &__currency {
+                  background-color: white;
+                  width: 50%;
+                  @include flex(center, initial);
+                  flex-direction: column;
+                  &-title {
+                    padding: 5px 0px;
+                    color: white;
+                    background-color: #ff665f;
+                    width: 100%;
+                    text-align: center;
+                  }
+                  &-list {
+                    list-style: none;
+                    li {
+                      &:first-child {
+                        margin-top: 10px;
+                      }
+                      width: 100px;
+                      text-align: center;
+                      padding: 5px 0;
+                      cursor: pointer;
+                      &:hover {
+                        text-decoration: underline;
+                      }
+                      &.active {
+                        color: crimson;
+                        text-decoration: underline;
+                      }
+                    }
+                  }
+                }
+                &__country {
+                  border-right: 0.5px solid gray;
+                }
+              }
+            }
+          }
+        }
+        &-item-sign {
+          margin: 0;
+          font-size: 13px;
+          display: block;
+          width: 100%;
+          padding: 10px 30px;
+          border-bottom: 0.5px solid lightgray;
+          padding: 15px 30px;
+          @include flex(center, initial);
+          img {
+            width: 18px;
+          }
+          * {
+            color: black;
+          }
+          &:hover {
+            * {
+              color: crimson;
+            }
+            img {
+              filter: invert(21%) sepia(86%) saturate(7141%) hue-rotate(342deg)
+                brightness(89%) contrast(93%);
+            }
+            text-decoration: underline crimson;
+          }
+        }
+      }
+    }
+    &:before {
+      content: '';
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: $super-nav-overlay-z-index;
+      display: none;
+    }
+    &.active {
+      &::before {
+        display: block;
+      }
+      .header-menu-container__inner {
+        transform: translateX(0);
+        .header-menu-close {
+          display: block;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@use '../../scss/' as *;
+
+.product-list {
+  position: relative;
+  width: 100%;
+  padding-top: 30px;
+  &-title {
+    width: 100%;
+    padding: 20px 15vw;
+    @include flex(center, space-between);
+    .product-list-heading-intro {
+      font-weight: 400;
+      font-size: 20px;
+    }
+    .product-list-trailing-btn {
+      & > * {
+        font-size: 13px;
+        color: black;
+        text-decoration: underline;
+      }
+    }
+  }
+  &-container {
+    position: relative;
+    background: white;
+    width: 100%;
+    .product-btn {
+      position: absolute;
+      @include flex(center, center);
+      padding: 5px 7px;
+      img {
+        width: 15px;
+      }
+      &:hover {
+        img {
+          filter: $filter;
+        }
+      }
+      &.next {
+        right: 0;
+        top: calc(50% - 40px);
+        z-index: 10;
+        cursor: pointer;
+        background: white;
+        transform: translateY(-50%) rotate(180deg);
+      }
+      &.prev {
+        left: 0;
+        top: calc(50% - 40px);
+        z-index: 10;
+        cursor: pointer;
+        background-color: white;
+        transform: translateY(-50%);
+      }
+      &.is-end {
+        img {
+          filter: invert(56%) sepia(2%) saturate(11%) hue-rotate(321deg)
+            brightness(90%) contrast(90%);
+        }
+      }
+    }
+  }
+}

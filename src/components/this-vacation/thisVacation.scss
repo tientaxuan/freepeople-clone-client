@@ -1,0 +1,18 @@
+@use '../../scss/' as *;
+
+.this-vacation {
+  padding: 10px 0 20px 0;
+  background-color: $body-background;
+  &-container {
+    width: 100%;
+    @include flex(center, center);
+    list-style: none;
+    gap: 2%;
+    &__item {
+      flex: 1;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
