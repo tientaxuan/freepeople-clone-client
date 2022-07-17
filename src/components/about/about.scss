@@ -1,0 +1,39 @@
+@use '../../scss' as *;
+
+.about {
+  width: 100%;
+  margin-top: 30px;
+  padding: 0 13%;
+  .about-container {
+    position: relative;
+    width: 100%;
+    .about-title {
+      padding-top: 30px;
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 10px;
+      letter-spacing: 0.3px;
+    }
+    .about-content {
+      width: 100%;
+      word-wrap: break-word;
+      font-size: 13px;
+      letter-spacing: 0.1px;
+      line-height: 20px;
+    }
+    .about-toggle {
+      font-size: 13px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 0.5px;
+      background-color: lightgray;
+      top: 0;
+      left: 0;
+    }
+  }
+}

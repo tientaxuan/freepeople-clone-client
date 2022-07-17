@@ -13,7 +13,10 @@ import {
   CatalogList,
   MiddleHero,
   MoreToRead,
+  About,
+  Footer,
 } from '../../components';
+import aboutData from '../../data/about';
 
 export const Home = () => {
   return (
@@ -29,6 +32,8 @@ export const Home = () => {
       <ProductList list={productList_2} />
       <ProductList list={productList_3} />
       <MoreToRead />
+      <About aboutData={aboutData} />
+      <Footer />
     </>
   );
 };

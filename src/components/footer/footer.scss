@@ -1,0 +1,182 @@
+@use '../../scss' as *;
+
+.footer {
+  margin-top: 40px;
+  width: 100%;
+  .footer-container {
+    background-color: #fcf7f2;
+    width: 100%;
+    .footer__for-sign {
+      border-top: 0.5px solid lightgray;
+      &-container {
+        width: 100%;
+        padding: 30px 20%;
+        .for-sign-main {
+          @include flex(initial, initial);
+          &__left {
+            flex: 1;
+            h3 {
+              font-size: 18px;
+              font-weight: 400;
+            }
+            p {
+              width: 100%;
+              padding-right: 120px;
+              line-height: 20px;
+              margin-top: 10px;
+              font-size: 13px;
+            }
+          }
+          &__right {
+            flex: 1;
+            label {
+              font-size: 13px;
+            }
+            .input-email {
+              margin-top: 10px;
+              width: 100%;
+              input {
+                outline: 0;
+                border: 0.5px solid gray;
+                padding: 10px 30px;
+                width: 70%;
+              }
+              button {
+                outline: 0;
+                padding: 12px 30px;
+                margin-left: 30px;
+                border: 0;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-size: 13px;
+                letter-spacing: 1px;
+                font-weight: 300;
+                background-color: rgb(255, 175, 175);
+                &:hover {
+                  background-color: white;
+                  border: 0.5px solid gray;
+                }
+              }
+            }
+          }
+        }
+        .for-sign-sub {
+          margin-top: 30px;
+          font-size: 12px;
+          font-style: italic;
+          letter-spacing: 0.6px;
+        }
+      }
+    }
+    .footer-main {
+      border-top: 0.5px solid lightgray;
+      width: 100%;
+      .footer-grid {
+        width: 100%;
+        &-container {
+          width: 100%;
+          padding: 30px 20%;
+          @include flex(initial, initial);
+          .footer-grid-item {
+            flex: 1;
+            &-title {
+              font-size: 13px;
+            }
+            .footer-item-list {
+              list-style: none;
+              .footer-item {
+                font-size: 13px;
+                margin-top: 10px;
+                a {
+                  color: black;
+                }
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+              .footer-item-with-icon {
+                @include flex(center, initial);
+                margin-bottom: 15px;
+                img {
+                  display: block;
+                  width: 25px;
+                }
+                a {
+                  text-align: center;
+                  display: block;
+                  font-size: 13px;
+                  color: black;
+                  margin-left: 10px;
+                  font-weight: 500;
+                }
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+      }
+      .footer-other-reference {
+        width: 100%;
+        &-container {
+          width: 100%;
+          padding: 30px 20%;
+          @include flex(initial, initial);
+          .left-side {
+            flex: 1;
+            @include flex(center, flex-end);
+            padding-right: 50px;
+            img {
+              width: 130px;
+            }
+          }
+          .right-side {
+            flex: 1;
+            @include flex(center, flex-start);
+            .right-side-icon {
+              width: 30px;
+              margin-right: 20px;
+              &:hover {
+                filter: $filter;
+              }
+            }
+          }
+        }
+      }
+      .footer-banner {
+        width: 100%;
+        &-container {
+          width: 100%;
+          padding: 20px 15%;
+          img {
+            width: 100%;
+          }
+        }
+        .footer-last {
+          width: 100%;
+          padding: 20px 15%;
+          @include flex(center, center);
+          .last-left-side {
+            flex: 1;
+            a {
+              font-size: 12px;
+              margin-right: 12px;
+              color: black;
+              font-weight: 400;
+              &:hover {
+                color: crimson;
+              }
+              &:last-child {
+                font-weight: 600;
+              }
+            }
+          }
+          .last-right-side {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
