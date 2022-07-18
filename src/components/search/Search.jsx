@@ -11,7 +11,7 @@ import {
   allowBodyScrollY,
 } from '../../widget/preventBodyScroll';
 
-export const Search = () => {
+export const Search = ({ stickyRef }) => {
   // fetch trending list
   const trendingList = [
     {

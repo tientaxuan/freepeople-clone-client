@@ -10,9 +10,21 @@
       border-top: 0.5px solid lightgray;
       &-container {
         width: 100%;
-        padding: 30px 20%;
+        padding: 30px 15%;
+        @include big {
+          padding: 30px 8%;
+        }
+        @include medium {
+          padding: 30px 5%;
+        }
+        @include small {
+          padding: 30px 5%;
+        }
         .for-sign-main {
           @include flex(initial, initial);
+          @include big {
+            flex-direction: column;
+          }
           &__left {
             flex: 1;
             h3 {
@@ -22,12 +34,18 @@
             p {
               width: 100%;
               padding-right: 120px;
+              @include small {
+                padding-right: 0;
+              }
               line-height: 20px;
               margin-top: 10px;
               font-size: 13px;
             }
           }
           &__right {
+            @include big {
+              margin-top: 10px;
+            }
             flex: 1;
             label {
               font-size: 13px;
@@ -35,15 +53,24 @@
             .input-email {
               margin-top: 10px;
               width: 100%;
+              @include small {
+                @include flex(initial, initial);
+                flex-direction: column;
+              }
               input {
                 outline: 0;
                 border: 0.5px solid gray;
+                height: 45px;
                 padding: 10px 30px;
                 width: 70%;
+                @include small {
+                  width: 100%;
+                }
               }
               button {
                 outline: 0;
-                padding: 12px 30px;
+                height: 45px;
+                width: 120px;
                 margin-left: 30px;
                 border: 0;
                 cursor: pointer;
@@ -55,6 +82,11 @@
                 &:hover {
                   background-color: white;
                   border: 0.5px solid gray;
+                }
+                @include small {
+                  width: 100%;
+                  margin: 0;
+                  margin-top: 20px;
                 }
               }
             }
@@ -70,23 +102,62 @@
     }
     .footer-main {
       border-top: 0.5px solid lightgray;
+      @include small {
+        border-top: 0;
+      }
       width: 100%;
       .footer-grid {
         width: 100%;
         &-container {
           width: 100%;
-          padding: 30px 20%;
+          padding: 30px 15%;
           @include flex(initial, initial);
+          @include big {
+            padding: 30px 8%;
+          }
+          @include medium {
+            padding: 30px 5%;
+          }
+          @include small {
+            padding: 30px 0;
+            padding-bottom: 0;
+            flex-direction: column;
+          }
+
           .footer-grid-item {
             flex: 1;
             &-title {
               font-size: 13px;
+              @include small {
+                border-top: 0.5px solid lightgray;
+                height: 60px;
+                @include flex(center, space-between);
+                padding: 0 15px;
+                font-size: 15px;
+                font-weight: 300;
+                cursor: pointer;
+                &:hover {
+                  color: crimson;
+                  * {
+                    color: crimson;
+                  }
+                }
+              }
             }
             .footer-item-list {
               list-style: none;
               .footer-item {
                 font-size: 13px;
                 margin-top: 10px;
+                @include small {
+                  border-top: 0.5px solid lightgray;
+                  margin: 0;
+                  height: 60px;
+                  @include flex(center, flex-start);
+                  padding: 0 15px;
+                  background-color: white;
+                  font-weight: 300;
+                }
                 a {
                   color: black;
                 }
@@ -112,6 +183,22 @@
                 &:hover {
                   text-decoration: underline;
                 }
+                @include small {
+                  justify-content: center;
+                  margin: 0;
+                  height: 60px;
+                  border-top: 0.5px solid lightgray;
+                }
+              }
+              @include small {
+                .footer-item {
+                  display: none;
+                }
+                &.active {
+                  .footer-item {
+                    display: flex;
+                  }
+                }
               }
             }
           }
@@ -121,7 +208,18 @@
         width: 100%;
         &-container {
           width: 100%;
-          padding: 30px 20%;
+          padding: 30px 15%;
+          @include big {
+            padding: 30px 8%;
+          }
+          @include medium {
+            padding: 30px 3%;
+          }
+          @include small {
+            padding: 30px 2%;
+            border-top: 0.5px solid lightgray;
+            flex-direction: column;
+          }
           @include flex(initial, initial);
           .left-side {
             flex: 1;
@@ -129,6 +227,11 @@
             padding-right: 50px;
             img {
               width: 130px;
+            }
+            @include small {
+              justify-content: center;
+              padding: 0;
+              margin-bottom: 30px;
             }
           }
           .right-side {
@@ -140,6 +243,14 @@
               &:hover {
                 filter: $filter;
               }
+              @include small {
+                margin: 0;
+              }
+            }
+            @include small {
+              gap: 20px;
+              justify-content: center;
+              margin: 0;
             }
           }
         }
@@ -149,6 +260,15 @@
         &-container {
           width: 100%;
           padding: 20px 15%;
+          @include big {
+            padding: 30px 8%;
+          }
+          @include medium {
+            padding: 30px 3%;
+          }
+          @include small {
+            padding: 30px 2%;
+          }
           img {
             width: 100%;
           }
@@ -156,19 +276,43 @@
         .footer-last {
           width: 100%;
           padding: 20px 15%;
+          @include big {
+            padding: 30px 8%;
+          }
+          @include medium {
+            padding: 30px 3%;
+          }
+          @include small {
+            padding: 30px 2%;
+            flex-direction: column;
+            padding-top: 0px;
+          }
           @include flex(center, center);
           .last-left-side {
             flex: 1;
+            @include small {
+              @include flex(center, center);
+              flex-wrap: wrap;
+            }
             a {
               font-size: 12px;
               margin-right: 12px;
               color: black;
               font-weight: 400;
+              display: inline-block;
               &:hover {
                 color: crimson;
               }
               &:last-child {
                 font-weight: 600;
+              }
+              @include small {
+                display: inline-block;
+                width: max-content;
+                padding: 0px 10px;
+                @include flex(center, center);
+                border-right: 0.5px solid lightgray;
+                margin-bottom: 20px;
               }
             }
           }

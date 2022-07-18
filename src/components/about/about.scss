@@ -4,6 +4,12 @@
   width: 100%;
   margin-top: 30px;
   padding: 0 13%;
+  @include big {
+    padding: 0 8%;
+  }
+  @include medium {
+    padding: 0 5%;
+  }
   @include small {
     padding: 0 5%;
   }

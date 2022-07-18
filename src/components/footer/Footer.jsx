@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './footer.scss';
 import locationIcon from '../../assets/icon/location.svg';
 import giftIcon from '../../assets/icon/gift.svg';
@@ -11,7 +11,10 @@ import twitterIcon from '../../assets/icon/twitter.svg';
 import instaIcon from '../../assets/icon/instagram.svg';
 import appStoreImg from '../../assets/icon/appstore.png';
 import careFPfooter from '../../assets/icon/careFPfooter.jpg';
+import careFPfooterMobile from '../../assets/icon/careFPfooterMobile.jpg';
 import { Link } from 'react-router-dom';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import breakPoint from '../../data/breakPoint';
 
 const footerGridData = [
   {
@@ -68,7 +71,7 @@ const footerGridData = [
         path: '',
       },
       {
-        display: 'WHolesale',
+        display: 'Wholesale',
         path: '',
       },
       {
@@ -171,6 +174,7 @@ const lastLeft = [
 ];
 
 export const Footer = () => {
+  const smallMatch = useMediaQuery(`(max-width: ${breakPoint.small})`);
   return (
     <div className='footer'>
       <div className='footer-container'>
@@ -205,34 +209,11 @@ export const Footer = () => {
             <div className='footer-grid-container'>
               {footerGridData?.map &&
                 footerGridData.map((ele, idx) => (
-                  <div
-                    className='footer-grid-item'
+                  <FooterGridItem
+                    ele={ele}
+                    smallMatch={smallMatch}
                     key={`footer-grid-item-${idx}`}
-                  >
-                    {ele.title && (
-                      <h3 className='footer-grid-item-title'>{ele.title}</h3>
-                    )}
-                    <ul className='footer-item-list'>
-                      {ele.list?.map &&
-                        ele.list.map((listItem, idx) => (
-                          <li className='footer-item' key={`list-item-${idx}`}>
-                            <Link to={listItem.path}>{listItem.display}</Link>
-                          </li>
-                        ))}
-                      {ele.listWithIcon?.map &&
-                        ele.listWithIcon.map((itemWithIcon, idx) => (
-                          <li
-                            className='footer-item-with-icon'
-                            key={`item-with-icon-${idx}`}
-                          >
-                            <img src={itemWithIcon.icon} alt='' />
-                            <Link to={itemWithIcon.path}>
-                              {itemWithIcon.display}
-                            </Link>
-                          </li>
-                        ))}
-                    </ul>
-                  </div>
+                  />
                 ))}
             </div>
           </div>
@@ -259,7 +240,13 @@ export const Footer = () => {
           </div>
           <div className='footer-banner'>
             <div className='footer-banner-container'>
-              <img src={careFPfooter} alt='' />
+              <picture>
+                <source
+                  srcSet={careFPfooterMobile}
+                  media={`(max-width: ${breakPoint.small})`}
+                />
+                <img src={careFPfooter} alt='' />
+              </picture>
             </div>
             <div className='footer-last'>
               <div className='last-left-side'>
@@ -276,6 +263,44 @@ export const Footer = () => {
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+const FooterGridItem = ({ ele, smallMatch }) => {
+  const [active, setActive] = useState(false);
+  const handleActive = () => {
+    setActive((state) => !state);
+  };
+  return (
+    <div className={`footer-grid-item`}>
+      {ele.title && (
+        <h3 className='footer-grid-item-title' onClick={handleActive}>
+          {ele.title}
+          {smallMatch ? (
+            active ? (
+              <i className='bx bx-minus'></i>
+            ) : (
+              <i className='bx bx-plus'></i>
+            )
+          ) : null}
+        </h3>
+      )}
+      <ul className={`footer-item-list ${active ? 'active' : ''}`}>
+        {ele.list?.map &&
+          ele.list.map((listItem, idx) => (
+            <li className='footer-item' key={`list-item-${idx}`}>
+              <Link to={listItem.path}>{listItem.display}</Link>
+            </li>
+          ))}
+        {ele.listWithIcon?.map &&
+          ele.listWithIcon.map((itemWithIcon, idx) => (
+            <li className='footer-item-with-icon' key={`item-with-icon-${idx}`}>
+              <img src={itemWithIcon.icon} alt='' />
+              <Link to={itemWithIcon.path}>{itemWithIcon.display}</Link>
+            </li>
+          ))}
+      </ul>
     </div>
   );
 };

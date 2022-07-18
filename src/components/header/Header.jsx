@@ -12,39 +12,33 @@ import { useDispatch } from 'react-redux';
 import { changeActiveSuperNav } from '../../app/slices/activeSuperNav';
 import user from '../../assets/icon/user.svg';
 import { preventBodyScrollY } from '../../widget/preventBodyScroll';
+import { useCallback } from 'react';
 
 export const Header = () => {
   const stickyRef = useRef(null);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+  const shrinkHeader = useCallback(() => {
+    const scrollPst =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    const distance = Number(scrollPst) - Number(lastScrollTop);
+    if (scrollPst > 100) {
+      stickyRef.current.classList.add('shrink');
+    } else stickyRef.current.classList.remove('shrink');
+    if (scrollPst > 400 && distance > 350) {
+      stickyRef.current.classList.add('slide-top');
+    }
+    if (scrollPst > 400 && distance < -350) {
+      stickyRef.current.classList.remove('slide-top');
+    }
+    setLastScrollTop(scrollPst);
+  }, [stickyRef, lastScrollTop]);
+
   useEffect(() => {
-    const shrinkHeader = () => {
-      if (
-        document.body.scrollTop > 80 ||
-        document.documentElement.scrollTop > 80
-      ) {
-        stickyRef.current.classList.add('shrink');
-      } else {
-        stickyRef.current.classList.remove('shrink');
-      }
-      if (
-        (document.body.scrollTop > 200 ||
-          document.documentElement.scrollTop > 200) &&
-        (document.body.scrollTop > lastScrollTop ||
-          document.documentElement.scrollTop > lastScrollTop)
-      ) {
-        stickyRef.current.classList.add('slide-top');
-      } else {
-        stickyRef.current.classList.remove('slide-top');
-      }
-      setLastScrollTop(
-        document.body.scrollTop || document.documentElement.scrollTop,
-      );
-    };
     window.addEventListener('scroll', shrinkHeader);
     return () => {
       window.removeEventListener('scroll', shrinkHeader);
     };
-  }, [lastScrollTop]);
+  }, [lastScrollTop, shrinkHeader]);
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -96,7 +90,7 @@ export const Header = () => {
             </div>
           </div>
           <div className='header-main__upper__right'>
-            <Search />
+            <Search stickyRef={stickyRef} />
             <ShoppingBag />
             <Hamburger stickyRef={stickyRef} />
           </div>
@@ -115,6 +109,7 @@ const Hamburger = ({ stickyRef }) => {
     event.preventDefault();
     // document.body.classList.add('prevent-body-scroll');
     stickyRef.current.classList.remove('slide-top');
+    // window.removeEventListener('scroll', headerScrollCallback);
     preventBodyScrollY();
     dispatch(changeActiveSuperNav(true));
   };

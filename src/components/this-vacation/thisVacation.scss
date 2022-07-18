@@ -13,10 +13,12 @@
     list-style: none;
     gap: 2%;
     &__item {
+      flex: 1;
       padding-bottom: 20px;
       width: 25%;
       @include medium {
         width: 40%;
+        flex: unset;
       }
       img {
         width: 100%;
