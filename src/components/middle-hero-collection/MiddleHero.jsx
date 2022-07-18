@@ -8,7 +8,23 @@ export const MiddleHero = () => {
     <div className='middle-hero'>
       <div className='middle-hero-container'>
         <div className='middle-hero-image'>
-          <img src={middleHeroData.img} alt='' />
+          <picture>
+            {middleHeroData.picture.map((ele, idx) =>
+              ele.default ? (
+                <img
+                  src={ele.img}
+                  alt=''
+                  key={`middle-hero-collection-poster-default`}
+                />
+              ) : (
+                <source
+                  media={`(max-width: ${ele.breakpoint})`}
+                  srcSet={ele.img}
+                  key={`middle-hero-collection-poster-${idx}`}
+                />
+              ),
+            )}
+          </picture>
         </div>
         <div className='middle-hero-info'>
           <h3 className='middle-hero-title'>{middleHeroData.title}</h3>

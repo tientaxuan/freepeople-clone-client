@@ -8,7 +8,9 @@
       display: none;
     }
     .header-main {
+      transition: transform 0.2s linear;
       height: max-content;
+      background-color: white;
       &__upper {
         @include flex(center, center);
         height: max-content;

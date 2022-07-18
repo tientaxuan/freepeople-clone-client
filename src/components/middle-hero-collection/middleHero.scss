@@ -7,9 +7,15 @@
     padding: 20px 0;
     width: 100%;
     @include flex(initial, initial);
+    @include small {
+      flex-direction: column;
+    }
 
     .middle-hero-image {
       width: 60%;
+      @include small {
+        width: 100%;
+      }
       img {
         display: block;
         width: 100%;
@@ -17,27 +23,34 @@
     }
     .middle-hero-info {
       width: 40%;
-      padding-left: 2%;
+      padding: 0 2%;
       @include flex(flex-start, center);
       flex-direction: column;
       gap: 15px;
-    }
-    .middle-hero-title {
-      font-size: 20px;
-      font-weight: 400;
-    }
-    .middle-hero-intro {
-      font-size: 13px;
-    }
-    .middle-hero-btn {
-      a {
-        display: block;
-        text-align: center;
-        padding: 5px 10px;
-        background-color: #f0e8e2;
-        color: black;
-        font-size: 12.5px;
-        text-decoration: underline;
+      .middle-hero-title {
+        font-size: 20px;
+        font-weight: 400;
+      }
+      .middle-hero-intro {
+        font-size: 13px;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+      }
+      .middle-hero-btn {
+        a {
+          display: block;
+          text-align: center;
+          padding: 5px 10px;
+          background-color: #f0e8e2;
+          color: black;
+          font-size: 12.5px;
+          text-decoration: underline;
+        }
+      }
+
+      @include small {
+        margin-top: 60px;
+        width: 100%;
       }
     }
   }

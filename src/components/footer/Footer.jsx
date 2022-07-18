@@ -245,7 +245,7 @@ export const Footer = () => {
               </div>
               <div className='right-side'>
                 {otherRefData.map((ele, idx) => (
-                  <Link to={ele.path}>
+                  <Link to={ele.path} key={`other-ref-${idx}`}>
                     <img
                       src={ele.icon}
                       alt=''

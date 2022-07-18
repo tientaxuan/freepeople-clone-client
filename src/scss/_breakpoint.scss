@@ -1,5 +1,11 @@
 @use './variable' as *;
 
+@mixin mobile {
+  @media only screen and (max-width: $mobile-width) {
+    @content;
+  }
+}
+
 @mixin small {
   @media only screen and (max-width: $small-width) {
     @content;

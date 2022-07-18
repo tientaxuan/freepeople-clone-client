@@ -7,6 +7,9 @@
     width: 100%;
     @include flex(initial, initial);
     gap: 1vw;
+    @include small {
+      flex-direction: column;
+    }
     .catalist-item {
       flex: 1;
       position: relative;
@@ -21,6 +24,7 @@
         bottom: 30px;
         color: black;
         font-size: 12px;
+        width: max-content;
         padding: 5px 15px;
         background-color: white;
         transform: translate(-50%, -50%);

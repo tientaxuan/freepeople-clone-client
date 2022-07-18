@@ -8,6 +8,11 @@ import cross from '../../assets/icon/cross.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeActiveModal } from '../../app/slices/activeModal';
 import useMediaQuery from '../../hooks/useMediaQuery';
+import breakPoint from '../../data/breakPoint';
+import {
+  preventBodyScrollY,
+  allowBodyScrollY,
+} from '../../widget/preventBodyScroll';
 
 export const QuickShopModal = () => {
   const activeModal = useSelector((state) => state.activeModal.value);
@@ -24,12 +29,16 @@ export const QuickShopModal = () => {
   const closeModal = (event) => {
     dispatch(changeActiveModal(false));
   };
-  const matchMedium = useMediaQuery('(max-width: 1080px)');
+  const matchMedium = useMediaQuery(`(max-width: ${breakPoint.medium})`);
 
   useEffect(() => {
     if (activeModal) {
-      document.body.classList.add('prevent-body-scroll');
-    } else document.body.classList.remove('prevent-body-scroll');
+      // document.body.classList.add('prevent-body-scroll');
+      preventBodyScrollY();
+    } else {
+      allowBodyScrollY();
+      // document.body.classList.remove('prevent-body-scroll');
+    }
   }, [activeModal, matchMedium]);
   return (
     <div className={`modal ${activeModal ? 'active' : ''}`}>

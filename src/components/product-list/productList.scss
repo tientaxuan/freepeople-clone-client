@@ -3,10 +3,10 @@
 .product-list {
   position: relative;
   width: 100%;
-  padding-top: 30px;
+  margin-top: 30px;
   &-title {
     width: 100%;
-    padding: 20px 15vw;
+    padding: 20px 15%;
     @include flex(center, space-between);
     .product-list-heading-intro {
       font-weight: 400;
@@ -27,7 +27,8 @@
     .product-btn {
       position: absolute;
       @include flex(center, center);
-      padding: 5px 7px;
+      width: 25px;
+      height: 35px;
       img {
         width: 15px;
       }
@@ -38,7 +39,7 @@
       }
       &.next {
         right: 0;
-        top: calc(50% - 40px);
+        top: calc(50% - 30px);
         z-index: 10;
         cursor: pointer;
         background: white;
@@ -46,7 +47,7 @@
       }
       &.prev {
         left: 0;
-        top: calc(50% - 40px);
+        top: calc(50% - 30px);
         z-index: 10;
         cursor: pointer;
         background-color: white;

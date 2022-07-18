@@ -11,6 +11,7 @@
   &-container {
     width: 100%;
     @include flex(initial, initial);
+    flex-wrap: wrap;
     gap: 1%;
     .more-to-read-item {
       flex: 1;
@@ -43,6 +44,10 @@
           color: black;
           text-decoration: underline;
         }
+      }
+      @include small {
+        width: 100%;
+        flex: unset;
       }
     }
   }

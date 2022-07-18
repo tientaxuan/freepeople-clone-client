@@ -14,8 +14,10 @@ import currencyItem from '../../data/currencyList';
 import cross from '../../assets/icon/cross.svg';
 import earth from '../../assets/icon/earth.svg';
 import user from '../../assets/icon/user.svg';
-import useMediaQuery from '../../hooks/useMediaQuery';
 import chevLeft from '../../assets/icon/chev-left.svg';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import breakPoint from '../../data/breakPoint';
+import { allowBodyScrollY } from '../../widget/preventBodyScroll';
 
 export const HeaderMenu = () => {
   const inner_ref = useRef(null);
@@ -24,22 +26,24 @@ export const HeaderMenu = () => {
   const dispatch = useDispatch();
   const handleClose = (event) => {
     event.preventDefault();
-    document.body.classList.remove('prevent-body-scroll');
+    allowBodyScrollY();
+    // document.body.classList.remove('prevent-body-scroll');
     dispatch(changeActiveSuperNav(false));
   };
 
   const handleClickOutside = (event) => {
     console.log('clicked');
     if (!inner_ref.current.contains(event.target)) {
-      document.body.classList.remove('prevent-body-scroll');
+      allowBodyScrollY();
+      // document.body.classList.remove('prevent-body-scroll');
       dispatch(changeActiveSuperNav(false));
     }
   };
-  const matches = useMediaQuery('(max-width: 1080px)');
+  const matches = useMediaQuery(`(max-width: ${breakPoint.medium})`);
 
   useEffect(() => {
-    console.log('effect runned');
-    document.body.classList.remove('prevent-body-scroll');
+    allowBodyScrollY();
+    // document.body.classList.remove('prevent-body-scroll');
     dispatch(changeActiveSuperNav(false));
   }, [matches, dispatch]);
   return (

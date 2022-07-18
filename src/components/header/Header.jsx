@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './header.scss';
 import './header_responsive.scss';
 import { Announcement } from '../announcement/Announcement';
@@ -11,9 +11,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { changeActiveSuperNav } from '../../app/slices/activeSuperNav';
 import user from '../../assets/icon/user.svg';
+import { preventBodyScrollY } from '../../widget/preventBodyScroll';
 
 export const Header = () => {
   const stickyRef = useRef(null);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
   useEffect(() => {
     const shrinkHeader = () => {
       if (
@@ -25,19 +27,24 @@ export const Header = () => {
         stickyRef.current.classList.remove('shrink');
       }
       if (
-        document.body.scrollTop > 200 ||
-        document.documentElement.scrollTop > 200
+        (document.body.scrollTop > 200 ||
+          document.documentElement.scrollTop > 200) &&
+        (document.body.scrollTop > lastScrollTop ||
+          document.documentElement.scrollTop > lastScrollTop)
       ) {
         stickyRef.current.classList.add('slide-top');
       } else {
         stickyRef.current.classList.remove('slide-top');
       }
+      setLastScrollTop(
+        document.body.scrollTop || document.documentElement.scrollTop,
+      );
     };
     window.addEventListener('scroll', shrinkHeader);
     return () => {
       window.removeEventListener('scroll', shrinkHeader);
     };
-  }, []);
+  }, [lastScrollTop]);
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -91,7 +98,7 @@ export const Header = () => {
           <div className='header-main__upper__right'>
             <Search />
             <ShoppingBag />
-            <Hamburger />
+            <Hamburger stickyRef={stickyRef} />
           </div>
         </div>
         <div className='header-main__lower'>
@@ -102,11 +109,13 @@ export const Header = () => {
   );
 };
 
-const Hamburger = () => {
+const Hamburger = ({ stickyRef }) => {
   const dispatch = useDispatch();
   const handleOnclick = (event) => {
     event.preventDefault();
-    document.body.classList.add('prevent-body-scroll');
+    // document.body.classList.add('prevent-body-scroll');
+    stickyRef.current.classList.remove('slide-top');
+    preventBodyScrollY();
     dispatch(changeActiveSuperNav(true));
   };
   return (

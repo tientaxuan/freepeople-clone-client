@@ -4,7 +4,6 @@ import './about.scss';
 export const About = ({ aboutData }) => {
   const [showMore, setShowMore] = useState(false);
   const fullContent = aboutData.content;
-  console.log(fullContent);
   const sliceContent =
     aboutData.content?.length > 400
       ? aboutData.content?.slice && aboutData.content.slice(0, 400) + '...'

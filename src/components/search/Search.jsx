@@ -5,6 +5,11 @@ import { changeSearch } from '../../app/slices/searchSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import cross from '../../assets/icon/cross.svg';
 import useMediaQuery from '../../hooks/useMediaQuery';
+import breakPoint from '../../data/breakPoint';
+import {
+  preventBodyScrollY,
+  allowBodyScrollY,
+} from '../../widget/preventBodyScroll';
 
 export const Search = () => {
   // fetch trending list
@@ -61,10 +66,12 @@ export const Search = () => {
       toggle_el.current.contains(event.target)
     ) {
       setActive(true);
-      document.body.classList.add('prevent-body-scroll');
+      preventBodyScrollY();
+      // document.body.classList.add('prevent-body-scroll');
     } else {
       setActive(false);
-      document.body.classList.remove('prevent-body-scroll');
+      allowBodyScrollY();
+      // document.body.classList.remove('prevent-body-scroll');
     }
   };
 
@@ -74,7 +81,8 @@ export const Search = () => {
   };
 
   const handleClose = () => {
-    document.body.classList.remove('prevent-body-scroll');
+    // document.body.classList.remove('prevent-body-scroll');
+    allowBodyScrollY();
     setActive(false);
   };
 
@@ -83,10 +91,11 @@ export const Search = () => {
     console.log('scrolling');
   };
 
-  const matches = useMediaQuery('(max-width: 1080px)');
+  const matches = useMediaQuery(`(max-width: ${breakPoint.medium})`);
   useEffect(() => {
     setActive(false);
-    document.body.classList.remove('prevent-body-scroll');
+    allowBodyScrollY();
+    // document.body.classList.remove('prevent-body-scroll');
   }, [matches]);
 
   return (

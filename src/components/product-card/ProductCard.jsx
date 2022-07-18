@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 import heart from '../../assets/icon/heart.svg';
 import { useDispatch } from 'react-redux';
 import { changeActiveModal } from '../../app/slices/activeModal';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import breakPoint from '../../data/breakPoint';
 
 export const ProductCard = ({ cardItem }) => {
+  const smallMatch = useMediaQuery(`(max-width: ${breakPoint.small})`);
   const dispatch = useDispatch();
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
@@ -29,7 +32,9 @@ export const ProductCard = ({ cardItem }) => {
             className='card-image'
             style={{
               backgroundImage: `url(${
-                isHovering
+                smallMatch
+                  ? cardItem.img[0]
+                  : isHovering
                   ? cardItem.img[0]
                   : cardItem.img[1]
                   ? cardItem.img[1]

@@ -20,6 +20,9 @@
       transform: rotate(180deg);
       img {
         width: 12px;
+        @include small {
+          width: 10px;
+        }
       }
       &:hover {
         img {
@@ -34,6 +37,9 @@
       transform: translateY(-50%);
       img {
         width: 12px;
+        @include small {
+          width: 10px;
+        }
       }
       &:hover {
         img {
@@ -53,6 +59,12 @@
       margin-left: 20px;
       text-decoration: underline;
       color: black;
+    }
+    @include small {
+      flex-direction: column;
+      * {
+        font-size: 12px;
+      }
     }
   }
 }

@@ -4,7 +4,11 @@
   width: 100%;
   margin-top: 30px;
   padding: 0 13%;
+  @include small {
+    padding: 0 5%;
+  }
   .about-container {
+    border-top: 0.5px solid gray;
     position: relative;
     width: 100%;
     .about-title {
@@ -25,15 +29,6 @@
       font-size: 13px;
       text-decoration: underline;
       cursor: pointer;
-    }
-    &::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 0.5px;
-      background-color: lightgray;
-      top: 0;
-      left: 0;
     }
   }
 }

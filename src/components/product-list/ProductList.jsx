@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import chevLef from '../../assets/icon/chev-left.svg';
 import { Link } from 'react-router-dom';
 
-export const ProductList = ({ list }) => {
+export const ProductList = ({ list, slidesPerView, slidesPerGroup }) => {
   const prevBtnRef = useRef(null);
   const nextBtnRef = useRef(null);
 
@@ -31,8 +31,8 @@ export const ProductList = ({ list }) => {
         <Swiper
           modules={[Navigation]}
           spaceBetween={15}
-          slidesPerView={5}
-          slidesPerGroup={5}
+          slidesPerView={slidesPerView}
+          slidesPerGroup={slidesPerGroup}
           speed={1000}
           navigation={{
             enabled: true,

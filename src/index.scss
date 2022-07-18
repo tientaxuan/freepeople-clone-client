@@ -26,6 +26,11 @@ a:focus {
   }
 }
 
+html,
 body {
   overflow-x: hidden;
+}
+
+.prevent-body-scroll-y {
+  overflow-y: hidden;
 }

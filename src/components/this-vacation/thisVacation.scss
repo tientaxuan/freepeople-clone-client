@@ -6,10 +6,18 @@
   &-container {
     width: 100%;
     @include flex(center, center);
+    @include medium {
+      gap: 5%;
+    }
+    flex-wrap: wrap;
     list-style: none;
     gap: 2%;
     &__item {
-      flex: 1;
+      padding-bottom: 20px;
+      width: 25%;
+      @include medium {
+        width: 40%;
+      }
       img {
         width: 100%;
       }
