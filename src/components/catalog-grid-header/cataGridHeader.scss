@@ -1,0 +1,27 @@
+@use '../../scss/' as *;
+
+.catalog-grid-header {
+  width: 100%;
+  &-container {
+    // background-color: white;
+    @include flex(center, space-between);
+    height: 60px;
+    width: 100%;
+    .catalog-grid-header-title {
+      @include flex(baseline, flex-start);
+      gap: 15px;
+      .category-name {
+        font-size: 26px;
+        font-weight: 400;
+      }
+      .category-total-products-count {
+        font-size: 13px;
+      }
+    }
+    .catalog-grid-header-widget {
+      &-container {
+        @include flex(center, flex-end);
+      }
+    }
+  }
+}

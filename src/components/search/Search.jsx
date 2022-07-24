@@ -1,15 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import './search.scss';
 import './search_responsive.scss';
 import { changeSearch } from '../../app/slices/searchSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import cross from '../../assets/icon/cross.svg';
-import useMediaQuery from '../../hooks/useMediaQuery';
-import breakPoint from '../../data/breakPoint';
-import {
-  preventBodyScrollY,
-  allowBodyScrollY,
-} from '../../widget/preventBodyScroll';
 
 export const Search = ({ stickyRef }) => {
   // fetch trending list
@@ -66,11 +60,9 @@ export const Search = ({ stickyRef }) => {
       toggle_el.current.contains(event.target)
     ) {
       setActive(true);
-      preventBodyScrollY();
       // document.body.classList.add('prevent-body-scroll');
     } else {
       setActive(false);
-      allowBodyScrollY();
       // document.body.classList.remove('prevent-body-scroll');
     }
   };
@@ -82,7 +74,6 @@ export const Search = ({ stickyRef }) => {
 
   const handleClose = () => {
     // document.body.classList.remove('prevent-body-scroll');
-    allowBodyScrollY();
     setActive(false);
   };
 
@@ -90,13 +81,6 @@ export const Search = ({ stickyRef }) => {
     event.stopPropagation();
     console.log('scrolling');
   };
-
-  const matches = useMediaQuery(`(max-width: ${breakPoint.medium})`);
-  useEffect(() => {
-    setActive(false);
-    allowBodyScrollY();
-    // document.body.classList.remove('prevent-body-scroll');
-  }, [matches]);
 
   return (
     <div className='search'>

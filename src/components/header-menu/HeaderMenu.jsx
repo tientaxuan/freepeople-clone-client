@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './headerMenu.scss';
 import './headerMenu_responsive.scss';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import menuItem from '../../data/menuItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeActiveSuperNav } from '../../app/slices/activeSuperNav';
@@ -17,16 +17,16 @@ import user from '../../assets/icon/user.svg';
 import chevLeft from '../../assets/icon/chev-left.svg';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import breakPoint from '../../data/breakPoint';
-import { allowBodyScrollY } from '../../widget/preventBodyScroll';
 
 export const HeaderMenu = () => {
   const inner_ref = useRef(null);
+  const headerMenuRef = useRef(null);
   const activeSuperNav = useSelector((state) => state.activeSuperNav);
 
   const dispatch = useDispatch();
   const handleClose = (event) => {
     event.preventDefault();
-    allowBodyScrollY();
+
     // document.body.classList.remove('prevent-body-scroll');
     dispatch(changeActiveSuperNav(false));
   };
@@ -34,18 +34,19 @@ export const HeaderMenu = () => {
   const handleClickOutside = (event) => {
     console.log('clicked');
     if (!inner_ref.current.contains(event.target)) {
-      allowBodyScrollY();
       // document.body.classList.remove('prevent-body-scroll');
       dispatch(changeActiveSuperNav(false));
     }
   };
-  const matches = useMediaQuery(`(max-width: ${breakPoint.medium})`);
+  const mediumMatch = useMediaQuery(`(max-width: ${breakPoint.medium})`);
 
   useEffect(() => {
-    allowBodyScrollY();
-    // document.body.classList.remove('prevent-body-scroll');
-    dispatch(changeActiveSuperNav(false));
-  }, [matches, dispatch]);
+    if (!mediumMatch && activeSuperNav) {
+      // document.body.classList.remove('prevent-body-scroll');
+      dispatch(changeActiveSuperNav(false));
+    }
+  }, [mediumMatch, dispatch, activeSuperNav]);
+
   return (
     <div
       className={`header-menu-container ${
@@ -57,7 +58,7 @@ export const HeaderMenu = () => {
         <button className='header-menu-close' onClick={handleClose}>
           <img src={cross} alt='' />
         </button>
-        <div className='header-menu'>
+        <div className='header-menu' ref={headerMenuRef}>
           <div className='header-menu-item-sign'>
             <img src={user} alt='' />
             <Link to='/auth' className=''>
@@ -65,7 +66,12 @@ export const HeaderMenu = () => {
             </Link>
           </div>
           {menuItem.map((ele, idx) => (
-            <MenuItem item={ele} idx={idx} key={`menu-item-${idx}`} />
+            <MenuItem
+              item={ele}
+              idx={idx}
+              key={`menu-item-${idx}`}
+              headerMenuRef={headerMenuRef}
+            />
           ))}
           <LocationItem />
         </div>
@@ -74,7 +80,7 @@ export const HeaderMenu = () => {
   );
 };
 
-const MenuItem = ({ item, idx }) => {
+const MenuItem = ({ item, idx, headerMenuRef }) => {
   const activeSuperNav = useSelector((state) => state.activeSuperNav);
   const [activeMobile, setActiveMobile] = useState(false);
   const [active, setActive] = useState(false);
@@ -85,26 +91,35 @@ const MenuItem = ({ item, idx }) => {
     setActive(false);
   };
 
-  const { pathname } = useLocation();
+  const { type } = useParams();
+  const navigate = useNavigate();
 
   const handleToggleMobileContent = (event) => {
     event.preventDefault();
+    headerMenuRef.current.classList.toggle('item-content-opened');
     setActiveMobile((state) => !state);
   };
+  const mediumMatch = useMediaQuery(`(max-width: ${breakPoint.medium})`);
   return (
     <div
-      className='header-menu-item'
+      className={`header-menu-item ${
+        !mediumMatch && type === item.type ? 'current' : ''
+      }`}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
       key={`header-menu-item-${idx}`}
     >
       <div
-        className={`header-menu-item__toggle ${
-          pathname.includes(item.path) ? 'current' : ''
-        }`}
-        onClick={handleToggleMobileContent}
+        className={`header-menu-item__toggle`}
+        onClick={
+          mediumMatch
+            ? handleToggleMobileContent
+            : () => {
+                navigate(item.path, { replace: true });
+              }
+        }
       >
-        <Link to={item.path}>{item.display}</Link>
+        <span>{item.display}</span>
         <div className='header-menu-item__toggle__icon'>
           <i className='bx bx-chevron-right'></i>
         </div>
@@ -140,6 +155,15 @@ const SubContent = ({ subContent }) => {
   const handleListOpen = (event) => {
     setListOpen((state) => !state);
   };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleNavigate = (event, listItem) => {
+    event.preventDefault();
+    const target = listItem.path ? listItem.path : '';
+    // document.body.classList.remove('prevent-body-scroll');
+    dispatch(changeActiveSuperNav(false));
+    navigate(target, { replace: true });
+  };
   return (
     <div className='header-menu-item__content__subcontent'>
       {subContent.title && (
@@ -147,9 +171,10 @@ const SubContent = ({ subContent }) => {
           className={`header-menu-item__content__subcontent__title ${
             subContent.main ? 'main-title' : ''
           }`}
+          onClick={handleListOpen}
         >
           <div className='title-text'>{subContent.title}</div>
-          <div className='subcontent-open' onClick={handleListOpen}>
+          <div className='subcontent-open'>
             {listOpen ? (
               <i className='bx bx-minus'></i>
             ) : (
@@ -170,6 +195,9 @@ const SubContent = ({ subContent }) => {
             <li
               className='header-menu-item__content__subcontent__list__item'
               key={`sub-content-list-item-${idx}`}
+              onClick={(event) => {
+                handleNavigate(event, listItem);
+              }}
             >
               {listItem.display}
             </li>

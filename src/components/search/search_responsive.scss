@@ -22,7 +22,9 @@
         width: 100%;
         max-height: calc(100% - 90px);
         overflow-y: auto;
+        overscroll-behavior-y: contain;
         border: 0;
+        overscroll-behavior: none;
       }
       &.active {
         max-width: none;

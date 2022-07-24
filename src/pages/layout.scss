@@ -4,4 +4,14 @@
   padding-top: 30px;
   width: 100%;
   background-color: $body-background;
+  min-height: 200vh;
+}
+
+body.header-shrink {
+  .main {
+    padding-top: 160px;
+    @include medium {
+      padding-top: 161px;
+    }
+  }
 }

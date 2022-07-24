@@ -1,0 +1,61 @@
+@use '../../../scss/' as *;
+
+.pagination {
+  &-container {
+    min-width: 150px;
+    @include flex(center, center);
+    gap: 15px;
+    // background-color: lightcoral;
+    .page-prev {
+      &:hover {
+        img {
+          filter: $filter;
+        }
+      }
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      //   background-color: lightcoral;
+      @include flex(center, center);
+      img {
+        display: block;
+        width: 10px;
+      }
+      &.in-active {
+        pointer-events: none;
+        img {
+          filter: invert(92%) sepia(28%) saturate(0%) hue-rotate(220deg)
+            brightness(88%) contrast(93%);
+        }
+      }
+    }
+    .pagination-middle {
+      span {
+        font-size: 13px;
+      }
+    }
+    .page-next {
+      &:hover {
+        img {
+          filter: $filter;
+        }
+      }
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      //   background-color: lightcoral;
+      @include flex(center, center);
+      img {
+        width: 10px;
+        transform: rotate(180deg);
+      }
+      &.in-active {
+        pointer-events: none;
+        img {
+          filter: invert(92%) sepia(28%) saturate(0%) hue-rotate(220deg)
+            brightness(88%) contrast(93%);
+        }
+      }
+    }
+  }
+}

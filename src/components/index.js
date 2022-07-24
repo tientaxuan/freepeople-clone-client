@@ -7,3 +7,8 @@ export { MiddleHero } from './middle-hero-collection/MiddleHero';
 export { MoreToRead } from './more-to-read/MoreToRead';
 export { About } from './about/About';
 export { Footer } from './footer/Footer';
+export { CataTop } from './catalog-top/CataTop';
+export { SideNav } from './side-nav/SideNav';
+export { CataGridHeader } from './catalog-grid-header/CataGridHeader';
+export { ProductGrid } from './product-grid/ProductGrid';
+export { QuickShopModal } from './quick-shop-modal/QuickShopModal';

@@ -45,9 +45,8 @@
         }
       }
       &__lower {
-        display: flex;
-        height: auto;
-        width: auto;
+        height: 0;
+        display: block;
         border: 0;
         padding: 0;
       }

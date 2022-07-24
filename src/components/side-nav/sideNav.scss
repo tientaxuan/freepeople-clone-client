@@ -1,0 +1,10 @@
+@use '../../scss/' as *;
+
+.side-nav {
+  width: 14%;
+  min-width: 150px;
+  padding-right: 20px;
+  &-container {
+    width: 100%;
+  }
+}

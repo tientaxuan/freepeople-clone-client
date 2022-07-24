@@ -1,31 +1,89 @@
 const menuItem = [
   {
     display: 'New',
-    path: '/new',
+    path: '/catalog/new/all',
+    type: 'new',
     content: [
       {
         main: true,
         title: 'Shop by Category',
         list: [
-          { display: 'Shop All New' },
-          { display: 'New Today' },
-          { display: 'Celebrate Summer Sale' },
-          { display: 'Back In Stock' },
-          { display: 'Gift Cards' },
-          { display: 'New Accessories' },
-          { display: 'New Activewear' },
-          { display: 'New Beauty + Wellness' },
-          { display: 'New Bottoms' },
-          { display: 'New Clothes' },
-          { display: 'New Dresses' },
-          { display: 'New Intimates' },
-          { display: 'New Jackets' },
-          { display: 'New Jeans' },
-          { display: 'New Shoes' },
-          { display: 'New Sweaters' },
-          { display: 'New Swim' },
-          { display: 'New Tops' },
-          { display: 'New Sale' },
+          {
+            display: 'Shop All New',
+            path: '/catalog/new/all',
+          },
+          {
+            display: 'New Today',
+            path: '/catalog/new/today',
+          },
+          {
+            display: 'Celebrate Summer Sale',
+            path: '/catalog/new/clebrate-vacation',
+          },
+          {
+            display: 'Back In Stock',
+            path: '/catalog/new/back-in-stock',
+          },
+          {
+            display: 'Gift Cards',
+            path: '/catalog/new/gift-card',
+          },
+          {
+            display: 'New Accessories',
+            path: '/catalog/new/accessory',
+          },
+          {
+            display: 'New Activewear',
+            path: '/catalog/new/activewear',
+          },
+          {
+            display: 'New Beauty + Wellness',
+            path: '/catalog/new/beauty-and-wellness',
+          },
+          {
+            display: 'New Bottoms',
+            path: '/catalog/new/bottom',
+          },
+          {
+            display: 'New Clothes',
+            path: '/catalog/new/clothes',
+          },
+          {
+            display: 'New Dresses',
+            path: '/catalog/new/dress',
+          },
+          {
+            display: 'New Intimates',
+            path: '/catalog/new/intimate',
+          },
+          {
+            display: 'New Jackets',
+            path: '/catalog/new/jacket',
+          },
+          {
+            display: 'New Jeans',
+            path: '/catalog/new/jean',
+          },
+          {
+            display: 'New Shoes',
+            path: '/catalog/new/shoe',
+          },
+          {
+            display: 'New Sweaters',
+            path: '/catalog/new/sweater',
+          },
+          {
+            display: 'New Swim',
+            path: '/catalog/new/swim',
+          },
+          {
+            display: 'New Tops',
+            path: '/catalog/new/top',
+          },
+          {
+            display: 'New Sale',
+            path: '/catalog/new/sale',
+          },
         ],
       },
       {
@@ -66,53 +124,136 @@ const menuItem = [
   },
   {
     display: 'Top Rated',
-    path: '/top-rated',
+    path: '/catalog/top-rated/all',
+    type: 'top-rated',
     content: [
       {
         main: true,
         title: 'Shop by Category',
         list: [
-          { display: 'Shop All Top Rated' },
-          { display: 'Top Rated Clothes' },
-          { display: 'Top Rated Dresses' },
-          { display: 'Top Rated Jeans' },
-          { display: 'Top Rated Activewear' },
-          { display: 'Top Rated Intimates' },
-          { display: 'Top Rated Shoes' },
-          { display: 'Top Rated Accessories' },
-          { display: 'Top Rated Beauty + Wellness' },
+          {
+            display: 'Shop All Top Rated',
+            path: '/catalog/top-rated/all',
+          },
+          {
+            display: 'Top Rated Clothes',
+            path: '/catalog/top-rated/clothes',
+          },
+          {
+            display: 'Top Rated Dresses',
+            path: '/catalog/top-rated/dress',
+          },
+          {
+            display: 'Top Rated Jeans',
+            path: '/catalog/top-rated/jean',
+          },
+          {
+            display: 'Top Rated Activewear',
+            path: '/catalog/top-rated/activewear',
+          },
+          {
+            display: 'Top Rated Shoes',
+            path: '/catalog/top-rated/shoe',
+          },
+          {
+            display: 'Top Rated Accessories',
+            path: '/catalog/top-rated/accessory',
+          },
+          {
+            display: 'Top Rated Beauty + Wellness',
+            path: '/catalog/top-rated/beauty-and-wellness',
+          },
         ],
       },
     ],
   },
   {
     display: 'Clothes',
-    path: '/clothes',
+    path: '/catalog/clothes/all',
+    type: 'clothes',
     content: [
       {
         main: true,
         title: 'Shop by Category',
         list: [
-          { display: 'Shop All Clothes' },
-          { display: 'New Clothes' },
-          { display: 'Top Rated' },
-          { display: 'Back In Stock Clothes' },
-          { display: 'Activewear' },
-          { display: 'Dresses' },
-          { display: 'Jackets' },
-          { display: 'Jeans' },
-          { display: 'Jumpsuits' },
-          { display: 'Loungewear' },
-          { display: 'Pants' },
-          { display: 'Rompers' },
-          { display: 'Sets' },
-          { display: 'Shots' },
-          { display: 'Skirts' },
-          { display: 'Suits' },
-          { display: 'Sweaters' },
-          { display: 'Swim' },
-          { display: 'Tops' },
           {
+            display: 'Shop All Clothes',
+            path: '/catalog/clothes/all',
+          },
+          {
+            path: '/catalog/clothes/new',
+            display: 'New Clothes',
+          },
+          {
+            path: '/catalog/clothes/top-rated',
+            display: 'Top Rated',
+          },
+          {
+            path: '/catalog/clothes/back-in-stock',
+            display: 'Back In Stock Clothes',
+          },
+          {
+            path: '/catalog/clothes/activewear',
+            display: 'Activewear',
+          },
+          {
+            path: '/catalog/clothes/dress',
+            display: 'Dresses',
+          },
+          {
+            path: '/catalog/clothes/jacket',
+            display: 'Jackets',
+          },
+          {
+            path: '/catalog/clothes/jean',
+            display: 'Jeans',
+          },
+          {
+            path: '/catalog/clothes/jumpsuit',
+            display: 'Jumpsuits',
+          },
+          {
+            path: '/catalog/clothes/loungewear',
+            display: 'Loungewear',
+          },
+          {
+            path: '/catalog/clothes/pant',
+            display: 'Pants',
+          },
+          {
+            path: '/catalog/clothes/romper',
+            display: 'Rompers',
+          },
+          {
+            path: '/catalog/clothes/set',
+            display: 'Sets',
+          },
+          {
+            path: '/catalog/clothes/shot',
+            display: 'Shots',
+          },
+          {
+            path: '/catalog/clothes/skirt',
+            display: 'Skirts',
+          },
+          {
+            path: '/catalog/clothes/suit',
+            display: 'Suits',
+          },
+          {
+            path: '/catalog/clothes/sweater',
+            display: 'Sweaters',
+          },
+          {
+            path: '/catalog/clothes/swim',
+            display: 'Swim',
+          },
+          {
+            path: '/catalog/clothes/top',
+            display: 'Tops',
+          },
+          {
+            path: '/catalog/clothes/vintage',
             display: 'Vintage: FP x Rose Bowl',
           },
         ],
@@ -152,27 +293,73 @@ const menuItem = [
   },
   {
     display: 'Dresses',
-    path: '/dresses',
+    path: '/catalog/dress/all',
+    type: 'dress',
     content: [
       {
         main: true,
         title: 'Shop by Category',
         list: [
-          { display: 'Shop All Dresses' },
-          { display: 'New Dresses' },
-          { display: 'Top Rated' },
-          { display: 'Back In Stock Dresses' },
-          { display: 'Casual Dresses' },
-          { display: 'Denim Dresses' },
-          { display: 'Jumpsuits' },
-          { display: 'Maxi Dresses' },
-          { display: 'Midi Dresses' },
-          { display: 'Mini Dresses' },
-          { display: 'Party Dresses' },
-          { display: 'Printed Dresses' },
-          { display: 'Sets' },
-          { display: 'White Dresses' },
-          { display: 'Sale Dressses' },
+          {
+            display: 'Shop All Dresses',
+            path: '/catalog/dress/all',
+          },
+          {
+            path: '/catalog/dress/new',
+            display: 'New Dresses',
+          },
+          {
+            path: '/catalog/dress/top-rated',
+            display: 'Top Rated',
+          },
+          {
+            path: '/catalog/dress/back-in-stock',
+            display: 'Back In Stock Dresses',
+          },
+          {
+            path: '/catalog/dress/casual',
+            display: 'Casual Dresses',
+          },
+          {
+            path: '/catalog/dress/denim',
+            display: 'Denim Dresses',
+          },
+          {
+            path: '/catalog/dress/jumpsuit',
+            display: 'Jumpsuits',
+          },
+          {
+            path: '/catalog/dress/maxi',
+            display: 'Maxi Dresses',
+          },
+          {
+            path: '/catalog/dress/midi',
+            display: 'Midi Dresses',
+          },
+          {
+            path: '/catalog/dress/mini',
+            display: 'Mini Dresses',
+          },
+          {
+            path: '/catalog/dress/party',
+            display: 'Party Dresses',
+          },
+          {
+            path: '/catalog/dress/printed',
+            display: 'Printed Dresses',
+          },
+          {
+            path: '/catalog/dress/set',
+            display: 'Sets',
+          },
+          {
+            path: '/catalog/dress/white',
+            display: 'White Dresses',
+          },
+          {
+            path: '/catalog/dress/sale',
+            display: 'Sale Dressses',
+          },
         ],
       },
       {
@@ -208,28 +395,77 @@ const menuItem = [
   },
   {
     display: 'Activewear',
-    path: '/activewear',
+    path: '/catalog/activewear/all',
+    type: 'activewear',
     content: [
       {
         main: true,
         title: 'Shop by Category',
         list: [
-          { display: 'Shop All Activewear' },
-          { display: 'New Activewear' },
-          { display: 'Top Rated' },
-          { display: 'Back In Stock Activewear' },
-          { display: 'Athletic Shoes' },
-          { display: 'Bottoms' },
-          { display: 'Hoodies + Sweatshirts' },
-          { display: 'Leggins' },
-          { display: 'One-Pieces' },
-          { display: 'Outerwear' },
-          { display: 'Shorts Bras' },
-          { display: 'Wellness' },
-          { display: 'Workout Gear' },
-          { display: 'Workout Sets' },
-          { display: 'Workout Tops' },
-          { display: 'Sale Activewear' },
+          {
+            path: '/catalog/activewear/all',
+            display: 'Shop All Activewear',
+          },
+          {
+            path: '/catalog/activewear/new',
+            display: 'New Activewear',
+          },
+          {
+            path: '/catalog/activewear/top-rated',
+            display: 'Top Rated',
+          },
+          {
+            path: '/catalog/activewear/back-in-stock',
+            display: 'Back In Stock Activewear',
+          },
+          {
+            path: '/catalog/activewear/athletic',
+            display: 'Athletic Shoes',
+          },
+          {
+            path: '/catalog/activewear/bottom',
+            display: 'Bottoms',
+          },
+          {
+            path: '/catalog/activewear/hoodie-and-sweatshirt',
+            display: 'Hoodies + Sweatshirts',
+          },
+          {
+            path: '/catalog/activewear/leggin',
+            display: 'Leggins',
+          },
+          {
+            path: '/catalog/activewear/one-piece',
+            display: 'One-Pieces',
+          },
+          {
+            path: '/catalog/activewear/outerwear',
+            display: 'Outerwear',
+          },
+          {
+            path: '/catalog/activewear/short-bra',
+            display: 'Shorts Bras',
+          },
+          {
+            path: '/catalog/activewear/wellness',
+            display: 'Wellness',
+          },
+          {
+            path: '/catalog/activewear/workout-gear',
+            display: 'Workout Gear',
+          },
+          {
+            path: '/catalog/activewear/workout-set',
+            display: 'Workout Sets',
+          },
+          {
+            path: '/catalog/activewear/workout-top',
+            display: 'Workout Tops',
+          },
+          {
+            path: '/catalog/activewear/sale',
+            display: 'Sale Activewear',
+          },
         ],
       },
       {
@@ -264,24 +500,61 @@ const menuItem = [
   },
   {
     display: 'Swim',
-    path: '/swim',
+    path: '/catalog/swim/all',
+    type: 'swim',
     content: [
       {
         main: true,
         title: 'Shop by Category',
         list: [
-          { display: 'Shop All Swim' },
-          { display: 'New Swim' },
-          { display: 'Top Rated' },
-          { display: 'Back In Stock' },
-          { display: 'Bikini Bottoms' },
-          { display: 'Bikini Tops' },
-          { display: 'Cover-Ups' },
-          { display: 'One-Pieces' },
-          { display: 'Sun Suits' },
-          { display: 'Surf' },
-          { display: 'Under $100 Swim' },
-          { display: 'Sale Swim' },
+          {
+            path: '/catalog/swim/all',
+            display: 'Shop All Swim',
+          },
+          {
+            path: '/catalog/swim/new',
+            display: 'New Swim',
+          },
+          {
+            path: '/catalog/swim/top-rated',
+            display: 'Top Rated',
+          },
+          {
+            path: '/catalog/swim/back-in-stock',
+            display: 'Back In Stock',
+          },
+          {
+            path: '/catalog/swim/bikini-bottom',
+            display: 'Bikini Bottoms',
+          },
+          {
+            path: '/catalog/swim/bikini-top',
+            display: 'Bikini Tops',
+          },
+          {
+            path: '/catalog/swim/cover-up',
+            display: 'Cover-Ups',
+          },
+          {
+            path: '/catalog/swim/one-piece',
+            display: 'One-Pieces',
+          },
+          {
+            path: '/catalog/swim/sun-suit',
+            display: 'Sun Suits',
+          },
+          {
+            path: '/catalog/swim/surf',
+            display: 'Surf',
+          },
+          {
+            path: '/catalog/swim/under-100$',
+            display: 'Under $100 Swim',
+          },
+          {
+            path: '/catalog/swim/sale',
+            display: 'Sale Swim',
+          },
         ],
       },
       {
@@ -307,27 +580,73 @@ const menuItem = [
   },
   {
     display: 'Intimates',
-    path: '/intimates',
+    path: '/catalog/intimate/all',
+    type: 'intimate',
     content: [
       {
         main: true,
         title: 'Shop by Category',
         list: [
-          { display: 'Shop All Intimates' },
-          { display: 'New Intimates' },
-          { display: 'Top Rated' },
-          { display: 'Back In Stock Intimates' },
-          { display: 'Body Suit' },
-          { display: 'Bottoms' },
-          { display: 'Bralettes' },
-          { display: 'Bras' },
-          { display: 'Intimates Bundles' },
-          { display: 'Sleep + Lounge' },
-          { display: 'Slips' },
-          { display: 'Tops' },
-          { display: 'Underwear Sets' },
-          { display: 'Undies' },
-          { display: 'Sale Intimates' },
+          {
+            path: '/catalog/intimate/all',
+            display: 'Shop All Intimates',
+          },
+          {
+            path: '/catalog/intimate/new',
+            display: 'New Intimates',
+          },
+          {
+            path: '/catalog/intimate/top-rated',
+            display: 'Top Rated',
+          },
+          {
+            path: '/catalog/intimate/back-in-stock',
+            display: 'Back In Stock Intimates',
+          },
+          {
+            path: '/catalog/intimate/body-suit',
+            display: 'Body Suit',
+          },
+          {
+            path: '/catalog/intimate/bottom',
+            display: 'Bottoms',
+          },
+          {
+            path: '/catalog/intimate/bralette',
+            display: 'Bralettes',
+          },
+          {
+            path: '/catalog/intimate/bra',
+            display: 'Bras',
+          },
+          {
+            path: '/catalog/intimate/intimate-bundle',
+            display: 'Intimates Bundles',
+          },
+          {
+            path: '/catalog/intimate/sleep-and-lounge',
+            display: 'Sleep + Lounge',
+          },
+          {
+            path: '/catalog/intimate/slip',
+            display: 'Slips',
+          },
+          {
+            path: '/catalog/intimate/top',
+            display: 'Tops',
+          },
+          {
+            path: '/catalog/intimate/underwear-set',
+            display: 'Underwear Sets',
+          },
+          {
+            path: '/catalog/intimate/undie',
+            display: 'Undies',
+          },
+          {
+            path: '/catalog/intimate/sale',
+            display: 'Sale Intimates',
+          },
         ],
       },
       {
@@ -360,26 +679,69 @@ const menuItem = [
   },
   {
     display: 'Shoes',
-    path: '/shoes',
+    path: '/catalog/shoe/all',
+    type: 'shoe',
     content: [
       {
         main: true,
         title: 'Shop by Category',
         list: [
-          { display: 'Shop All Shoes' },
-          { display: 'New Shoes' },
-          { display: 'Top Rated' },
-          { display: 'Back In Stock Shoes' },
-          { display: 'Boots' },
-          { display: 'Clogs + Mules' },
-          { display: 'Flats' },
-          { display: 'Platforms, Wedges+Heels' },
-          { display: 'MenSwear' },
-          { display: 'Sandals' },
-          { display: 'Slipper' },
-          { display: 'Sneakers' },
-          { display: 'Socks + Tights' },
-          { display: 'Sale Shoes' },
+          {
+            path: '/catalog/shoe/all',
+            display: 'Shop All Shoes',
+          },
+          {
+            path: '/catalog/shoe/new',
+            display: 'New Shoes',
+          },
+          {
+            path: '/catalog/shoe/top-rated',
+            display: 'Top Rated',
+          },
+          {
+            path: '/catalog/shoe/back-in-stock',
+            display: 'Back In Stock Shoes',
+          },
+          {
+            path: '/catalog/shoe/boot',
+            display: 'Boots',
+          },
+          {
+            path: '/catalog/shoe/clog-and-mules',
+            display: 'Clogs + Mules',
+          },
+          {
+            path: '/catalog/shoe/flat',
+            display: 'Flats',
+          },
+          {
+            path: '/catalog/shoe/platform-and-wedge-and-heel',
+            display: 'Platforms, Wedges+Heels',
+          },
+          {
+            path: '/catalog/shoe/men-swear',
+            display: 'MenSwear',
+          },
+          {
+            path: '/catalog/shoe/sandal',
+            display: 'Sandals',
+          },
+          {
+            path: '/catalog/shoe/slipper',
+            display: 'Slipper',
+          },
+          {
+            path: '/catalog/shoe/sneaker',
+            display: 'Sneakers',
+          },
+          {
+            path: '/catalog/shoe/sock-and-tight',
+            display: 'Socks + Tights',
+          },
+          {
+            path: '/catalog/shoe/sale',
+            display: 'Sale Shoes',
+          },
         ],
       },
       {
@@ -420,27 +782,73 @@ const menuItem = [
   },
   {
     display: 'Accessories',
-    path: '/accessories',
+    path: '/catalog/accessory/all',
+    type: 'accessory',
     content: [
       {
         main: true,
         title: 'Shop by Category',
         list: [
-          { display: 'Shop All Accessories' },
-          { display: 'New Accessories' },
-          { display: 'Top Rated' },
-          { display: 'Back In Stock Accessories' },
-          { display: 'Bags' },
-          { display: 'Bandanas + Scarves' },
-          { display: 'Belts' },
-          { display: 'Game + Gifts' },
-          { display: 'Hair Accessories' },
-          { display: 'Hats' },
-          { display: 'Jewerly' },
-          { display: 'Socks + Tights' },
-          { display: 'Sunglasses + Eyewear' },
-          { display: 'Tech + Phone Accessories' },
-          { display: 'Sale Accessories' },
+          {
+            path: '/catalog/accessory/all',
+            display: 'Shop All Accessories',
+          },
+          {
+            path: '/catalog/accessory/new',
+            display: 'New Accessories',
+          },
+          {
+            path: '/catalog/accessory/top-rated',
+            display: 'Top Rated',
+          },
+          {
+            path: '/catalog/accessory/back-in-stock',
+            display: 'Back In Stock Accessories',
+          },
+          {
+            path: '/catalog/accessory/bag',
+            display: 'Bags',
+          },
+          {
+            display: 'Bandanas + Scarves',
+            path: '/catalog/accessory/bandana-and-scarve',
+          },
+          {
+            path: '/catalog/accessory/belt',
+            display: 'Belts',
+          },
+          {
+            path: '/catalog/accessory/game-and-gift',
+            display: 'Game + Gifts',
+          },
+          {
+            path: '/catalog/accessory/hair',
+            display: 'Hair Accessories',
+          },
+          {
+            path: '/catalog/accessory/hat',
+            display: 'Hats',
+          },
+          {
+            path: '/catalog/accessory/jewerly',
+            display: 'Jewerly',
+          },
+          {
+            path: '/catalog/accessory/sock-and-tight',
+            display: 'Socks + Tights',
+          },
+          {
+            display: 'Sunglasses + Eyewear',
+            path: '/catalog/accessory/sunglass-and-eyewear',
+          },
+          {
+            path: '/catalog/accessory/tech-and-phone',
+            display: 'Tech + Phone Accessories',
+          },
+          {
+            path: '/catalog/accessory/sale',
+            display: 'Sale Accessories',
+          },
         ],
       },
       {
@@ -481,30 +889,85 @@ const menuItem = [
   },
   {
     display: 'Beauty + Wellness',
-    path: '/beauty',
+    path: '/catalog/beauty-and-wellness/all',
+    type: 'beauty-and-wellness',
     content: [
       {
         main: true,
         title: 'Shop by Category',
         list: [
-          { display: 'Explore Beauty + Wellness' },
-          { display: 'New Beauty + Wellness' },
-          { display: 'Top Rated' },
-          { display: 'Back In Stock Beauty + Wellness' },
-          { display: 'Active Essentials' },
-          { display: 'Body' },
-          { display: 'Books + Games' },
-          { display: 'Fragrance + Aromatherapy' },
-          { display: 'Gift Sets and Travel Size' },
-          { display: 'Hair' },
-          { display: 'Makeup' },
-          { display: 'Nails' },
-          { display: 'Self Love' },
-          { display: 'Skincare' },
-          { display: 'Suncare' },
-          { display: 'The Crystal Shop' },
-          { display: 'Vegan Beauty' },
-          { display: 'Wellness' },
+          {
+            path: '/catalog/beauty-and-wellness/all',
+            display: 'Explore Beauty + Wellness',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/new',
+            display: 'New Beauty + Wellness',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/top-rated',
+            display: 'Top Rated',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/back-in-stock',
+            display: 'Back In Stock Beauty + Wellness',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/active-essential',
+            display: 'Active Essentials',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/body',
+            display: 'Body',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/books-and-game',
+            display: 'Books + Games',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/fragance-and-aromatherapy',
+            display: 'Fragrance + Aromatherapy',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/gift-set-and-travel-size',
+            display: 'Gift Sets and Travel Size',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/hair',
+            display: 'Hair',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/makeup',
+            display: 'Makeup',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/nail',
+            display: 'Nails',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/self-love',
+            display: 'Self Love',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/skincare',
+            display: 'Skincare',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/suncare',
+            display: 'Suncare',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/crystal',
+            display: 'The Crystal Shop',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/vegan',
+            display: 'Vegan Beauty',
+          },
+          {
+            path: '/catalog/beauty-and-wellness/wellness',
+            display: 'Wellness',
+          },
         ],
       },
       {
@@ -540,25 +1003,65 @@ const menuItem = [
   },
   {
     display: 'Sale',
-    path: '/sale',
+    path: '/catalog/sale/all',
+    type: 'sale',
     content: [
       {
         main: true,
         title: 'Shop by Category',
         list: [
-          { display: 'Shop All Sale' },
-          { display: 'New Sale' },
-          { display: 'Best of Sale' },
-          { display: 'Sale Accessories' },
-          { display: 'Sale Activewear' },
-          { display: 'Sale Bottoms' },
-          { display: 'Sale Dresses' },
-          { display: 'Sale Intimates' },
-          { display: 'Sale Jackets + Outerwear' },
-          { display: 'Sale Shoes' },
-          { display: 'Sale Sweaters' },
-          { display: 'Sale Swim' },
-          { display: 'Sale Tops' },
+          {
+            path: '/catalog/sale/all',
+            display: 'Shop All Sale',
+          },
+          {
+            path: '/catalog/sale/new',
+            display: 'New Sale',
+          },
+          {
+            path: '/catalog/sale/best-of-sale',
+            display: 'Best of Sale',
+          },
+          {
+            path: '/catalog/sale/accessory',
+            display: 'Sale Accessories',
+          },
+          {
+            path: '/catalog/sale/activewear',
+            display: 'Sale Activewear',
+          },
+          {
+            path: '/catalog/sale/bottom',
+            display: 'Sale Bottoms',
+          },
+          {
+            path: '/catalog/sale/dress',
+            display: 'Sale Dresses',
+          },
+          {
+            path: '/catalog/sale/intimate',
+            display: 'Sale Intimates',
+          },
+          {
+            path: '/catalog/sale/jacket-and-outerwear',
+            display: 'Sale Jackets + Outerwear',
+          },
+          {
+            path: '/catalog/sale/shoe',
+            display: 'Sale Shoes',
+          },
+          {
+            path: '/catalog/sale/sweater',
+            display: 'Sale Sweaters',
+          },
+          {
+            path: '/catalog/sale/swim',
+            display: 'Sale Swim',
+          },
+          {
+            path: '/catalog/sale/top',
+            display: 'Sale Tops',
+          },
         ],
       },
       {

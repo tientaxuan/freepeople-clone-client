@@ -48,7 +48,11 @@ export const ProductList = ({ list, slidesPerView, slidesPerGroup }) => {
           {list.slide?.map &&
             list.slide.map((ele, idx) => (
               <SwiperSlide key={`product-card-${idx}`}>
-                <ProductCard cardItem={ele} />
+                <ProductCard
+                  cardPath={ele.path}
+                  cardImg={ele.img}
+                  cardTitle={ele.title}
+                />
               </SwiperSlide>
             ))}
         </Swiper>

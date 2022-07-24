@@ -1,0 +1,49 @@
+@use '../../scss/' as *;
+.catalog-top {
+  width: 100%;
+  @include medium {
+    display: none;
+  }
+  &-container {
+    width: 100%;
+    @include flex(initial, initial);
+    flex-wrap: wrap;
+    gap: 20px;
+    .catalog-top-item {
+      flex: 1;
+      position: relative;
+      img {
+        display: block;
+        width: 100%;
+      }
+      span {
+        display: block;
+        position: absolute;
+        left: 50%;
+        bottom: 30px;
+        color: black;
+        font-size: 12px;
+        width: max-content;
+        padding: 5px 15px;
+        background-color: white;
+        transform: translate(-50%, -50%);
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .catalog-path-info {
+      width: 100%;
+      height: 100%;
+      // background-color: lightblue;
+      @include flex(center, center);
+      gap: 20px;
+      span {
+        font-size: 13px;
+        &:nth-child(2) {
+          color: lightgray;
+        }
+      }
+    }
+  }
+}

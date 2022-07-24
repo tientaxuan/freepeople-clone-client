@@ -1,0 +1,51 @@
+@use '../../../scss/' as *;
+
+.browser-by {
+  width: 100%;
+  &-container {
+    width: 100%;
+    .browser-by-title {
+      font-size: 13px;
+      //   background-color: lightcoral;
+      padding: 9.5px 0;
+      border-bottom: 0.5px solid lightgray;
+    }
+    .browser-list {
+      width: 100%;
+      &-container {
+        .browser-list-item {
+          list-style: none;
+          a {
+            font-size: 12px;
+            color: black;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          &.leading {
+            padding: 10px 0 10px 0;
+            position: relative;
+            margin-bottom: 5px;
+            &:before {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              height: 1px;
+              width: 8px;
+              background-color: lightgray;
+            }
+          }
+          &.current-path {
+            a {
+              color: crimson;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './header.scss';
 import './header_responsive.scss';
 import { Announcement } from '../announcement/Announcement';
@@ -13,36 +13,34 @@ import { changeActiveSuperNav } from '../../app/slices/activeSuperNav';
 import user from '../../assets/icon/user.svg';
 import { preventBodyScrollY } from '../../widget/preventBodyScroll';
 import { useCallback } from 'react';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import breakPoint from '../../data/breakPoint';
 
 export const Header = () => {
+  const matchMedium = useMediaQuery(`(max-width: ${breakPoint.medium})`);
+  const shrinkHeight = matchMedium ? 40 : 78;
   const stickyRef = useRef(null);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
   const shrinkHeader = useCallback(() => {
     const scrollPst =
       document.body.scrollTop || document.documentElement.scrollTop;
-    const distance = Number(scrollPst) - Number(lastScrollTop);
-    if (scrollPst > 100) {
+    if (scrollPst > shrinkHeight) {
       stickyRef.current.classList.add('shrink');
-    } else stickyRef.current.classList.remove('shrink');
-    if (scrollPst > 400 && distance > 350) {
-      stickyRef.current.classList.add('slide-top');
+      document.body.classList.add('header-shrink');
+    } else {
+      stickyRef.current.classList.remove('shrink');
+      document.body.classList.remove('header-shrink');
     }
-    if (scrollPst > 400 && distance < -350) {
-      stickyRef.current.classList.remove('slide-top');
-    }
-    setLastScrollTop(scrollPst);
-  }, [stickyRef, lastScrollTop]);
-
+  }, [stickyRef, shrinkHeight]);
   useEffect(() => {
     window.addEventListener('scroll', shrinkHeader);
     return () => {
       window.removeEventListener('scroll', shrinkHeader);
     };
-  }, [lastScrollTop, shrinkHeader]);
+  }, [shrinkHeader]);
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  console.log(pathname);
+  // console.log(pathname);
   const handleFp = () => {
     navigate('/', { replace: true });
   };

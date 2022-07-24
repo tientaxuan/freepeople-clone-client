@@ -136,7 +136,7 @@
     &__lower {
       height: 60px;
       background-color: white;
-      padding: 10px var(--margin-right);
+      padding: 0 var(--margin-right);
       border-top: 0.5px solid lightgray;
       @include flex(center, initial);
     }

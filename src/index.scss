@@ -29,8 +29,9 @@ a:focus {
 html,
 body {
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .prevent-body-scroll-y {
-  overflow-y: hidden;
+  overflow-y: auto;
 }

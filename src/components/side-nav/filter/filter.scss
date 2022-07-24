@@ -1,0 +1,120 @@
+@use '../../../scss/' as *;
+
+.filter {
+  width: 100%;
+  margin-top: 30px;
+  &-container {
+    width: 100%;
+    .filter-title {
+      font-size: 13px;
+      padding: 9.5px 0;
+      border-bottom: 0.5px solid lightgray;
+    }
+    .filter-main {
+      &-container {
+        width: 100%;
+        .filter-list {
+          border-bottom: 0.5px solid lightgray;
+          &-title {
+            cursor: pointer;
+            &:hover {
+              color: crimson;
+              * {
+                color: crimson;
+              }
+            }
+            @include flex(center, space-between);
+            padding: 20px 0;
+            cursor: pointer;
+            // background-color: lightblue;
+            .filter-list-display {
+              font-size: 15px;
+              font-weight: 300;
+            }
+            .filter-list-badge {
+              @include flex(center, flex-end);
+              span {
+                @include flex(center, center);
+                font-size: 12px;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: lightgray;
+                text-align: center;
+                color: black;
+                margin-right: 10px;
+              }
+            }
+          }
+          &-container {
+            margin-bottom: 20px;
+            height: max-content;
+            max-height: 400px;
+            overflow-y: auto;
+            list-style: none;
+            .filter-list-item {
+              cursor: pointer;
+              &:hover {
+                color: crimson;
+                * {
+                  color: crimson;
+                }
+                .filter-choosed-icon {
+                  filter: $filter;
+                }
+              }
+
+              padding: 10px 10px;
+              margin-bottom: 10px;
+              width: 100%;
+              border: 0.5px solid lightgray;
+              @include flex(center, space-between);
+              &-name {
+                padding-right: 10px;
+                display: block;
+                font-size: 13px;
+                word-wrap: break-word;
+                font-weight: 300;
+                @include flex(center, flex-start);
+                gap: 10px;
+                .color-list-item {
+                  display: inline-block;
+                  min-width: 15px;
+                  min-height: 15px;
+                  border-radius: 50%;
+                  border: 0.5px solid black;
+                  background-repeat: no-repeat;
+                  background-size: cover;
+                }
+              }
+              &.choosed {
+                background-color: white;
+              }
+              .filter-choosed-icon {
+                width: 10px;
+              }
+            }
+            display: none;
+            &.open {
+              display: block;
+            }
+          }
+        }
+        .reset-all-filter {
+          width: 100%;
+          font-size: 12px;
+          // background-color: lightblue;
+          padding: 15px 0;
+          margin-top: 10px;
+          cursor: pointer;
+          color: lightgray;
+          pointer-events: none;
+          &.has-filter {
+            color: black;
+            pointer-events: all;
+          }
+        }
+      }
+    }
+  }
+}

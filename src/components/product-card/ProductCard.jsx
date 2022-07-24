@@ -6,8 +6,9 @@ import { useDispatch } from 'react-redux';
 import { changeActiveModal } from '../../app/slices/activeModal';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import breakPoint from '../../data/breakPoint';
+import { preventBodyScrollY } from '../../widget/preventBodyScroll';
 
-export const ProductCard = ({ cardItem }) => {
+export const ProductCard = ({ cardPath, cardImg, cardTitle }) => {
   const smallMatch = useMediaQuery(`(max-width: ${breakPoint.small})`);
   const dispatch = useDispatch();
   const [isHovering, setIsHovering] = useState(false);
@@ -18,6 +19,7 @@ export const ProductCard = ({ cardItem }) => {
     setIsHovering(false);
   };
   const openModal = () => {
+    preventBodyScrollY();
     dispatch(changeActiveModal(true));
   };
   return (
@@ -27,18 +29,18 @@ export const ProductCard = ({ cardItem }) => {
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
       >
-        <Link to={cardItem.path}>
+        <Link to={cardPath}>
           <div
             className='card-image'
             style={{
               backgroundImage: `url(${
                 smallMatch
-                  ? cardItem.img[0]
+                  ? cardImg[0]
                   : isHovering
-                  ? cardItem.img[0]
-                  : cardItem.img[1]
-                  ? cardItem.img[1]
-                  : cardItem.img[0]
+                  ? cardImg[0]
+                  : cardImg[1]
+                  ? cardImg[1]
+                  : cardImg[0]
               })`,
             }}
           >
@@ -61,7 +63,7 @@ export const ProductCard = ({ cardItem }) => {
             </div>
           </div>
         </Link>
-        <p className='card-title'>{cardItem.title}</p>
+        <p className='card-title'>{cardTitle}</p>
       </div>
     </div>
   );

@@ -29,6 +29,9 @@
           filter: $filter;
         }
       }
+      @include mobile {
+        right: 15px;
+      }
     }
     &.announcement-prev {
       width: 30px;
@@ -45,6 +48,9 @@
         img {
           filter: $filter;
         }
+      }
+      @include mobile {
+        left: 15px;
       }
     }
   }
