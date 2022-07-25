@@ -1,0 +1,52 @@
+@use '../../../scss/' as *;
+
+.grid-card {
+  &-container {
+    width: 100%;
+
+    .product-card-container {
+      .card-title {
+        height: auto;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+    .grid-card-price {
+      font-size: 12px;
+    }
+    .grid-card-color-picker {
+      margin-top: 5px;
+      font-size: 12px;
+      height: 30px;
+      width: 100%;
+      @include flex(center, flex-start);
+      gap: 3px;
+      .grid-card-color-icon {
+        @include flex(center, center);
+        cursor: pointer;
+        padding: 3px;
+        border-radius: 50%;
+        .grid-color-thumb {
+          display: block;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          border: 0.5px solid gray;
+        }
+        &:hover {
+          border: 0.5px solid crimson;
+          padding: 2px;
+        }
+        &.current {
+          border: 0.5px solid black;
+          padding: 2px;
+        }
+      }
+      .grid-card-color-remain {
+        display: block;
+        margin-left: 5px;
+      }
+    }
+  }
+}

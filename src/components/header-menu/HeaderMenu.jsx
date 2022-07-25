@@ -17,11 +17,13 @@ import user from '../../assets/icon/user.svg';
 import chevLeft from '../../assets/icon/chev-left.svg';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import breakPoint from '../../data/breakPoint';
+import scrollTop from '../../widget/scrollTop';
 
 export const HeaderMenu = () => {
   const inner_ref = useRef(null);
   const headerMenuRef = useRef(null);
   const activeSuperNav = useSelector((state) => state.activeSuperNav);
+  const [itemActive, setItemActive] = useState('');
 
   const dispatch = useDispatch();
   const handleClose = (event) => {
@@ -29,13 +31,15 @@ export const HeaderMenu = () => {
 
     // document.body.classList.remove('prevent-body-scroll');
     dispatch(changeActiveSuperNav(false));
+    setItemActive((state) => '');
   };
 
   const handleClickOutside = (event) => {
-    console.log('clicked');
     if (!inner_ref.current.contains(event.target)) {
       // document.body.classList.remove('prevent-body-scroll');
       dispatch(changeActiveSuperNav(false));
+      setItemActive((state) => '');
+      headerMenuRef.current.classList.remove('item-content-opened');
     }
   };
   const mediumMatch = useMediaQuery(`(max-width: ${breakPoint.medium})`);
@@ -44,6 +48,7 @@ export const HeaderMenu = () => {
     if (!mediumMatch && activeSuperNav) {
       // document.body.classList.remove('prevent-body-scroll');
       dispatch(changeActiveSuperNav(false));
+      setItemActive((state) => '');
     }
   }, [mediumMatch, dispatch, activeSuperNav]);
 
@@ -69,36 +74,44 @@ export const HeaderMenu = () => {
             <MenuItem
               item={ele}
               idx={idx}
-              key={`menu-item-${idx}`}
+              key={`menu-item-${ele.type}`}
               headerMenuRef={headerMenuRef}
+              itemActive={itemActive}
+              setItemActive={setItemActive}
             />
           ))}
-          <LocationItem />
+          <LocationItem
+            itemActive={itemActive}
+            setItemActive={setItemActive}
+            headerMenuRef={headerMenuRef}
+          />
         </div>
       </div>
     </div>
   );
 };
 
-const MenuItem = ({ item, idx, headerMenuRef }) => {
+const MenuItem = ({ item, idx, headerMenuRef, itemActive, setItemActive }) => {
   const activeSuperNav = useSelector((state) => state.activeSuperNav);
-  const [activeMobile, setActiveMobile] = useState(false);
   const [active, setActive] = useState(false);
+  console.log(itemActive);
   const handleMouseOver = () => {
     setActive(true);
   };
   const handleMouseOut = () => {
     setActive(false);
   };
-
   const { type } = useParams();
   const navigate = useNavigate();
 
-  const handleToggleMobileContent = (event) => {
-    event.preventDefault();
+  const handleToggleMobileContent = (item) => {
     headerMenuRef.current.classList.toggle('item-content-opened');
-    setActiveMobile((state) => !state);
+    setItemActive((state) => {
+      if (item.type === itemActive) return '';
+      else return item.type;
+    });
   };
+
   const mediumMatch = useMediaQuery(`(max-width: ${breakPoint.medium})`);
   return (
     <div
@@ -113,7 +126,10 @@ const MenuItem = ({ item, idx, headerMenuRef }) => {
         className={`header-menu-item__toggle`}
         onClick={
           mediumMatch
-            ? handleToggleMobileContent
+            ? (event) => {
+                event.preventDefault();
+                handleToggleMobileContent(item);
+              }
             : () => {
                 navigate(item.path, { replace: true });
               }
@@ -127,11 +143,13 @@ const MenuItem = ({ item, idx, headerMenuRef }) => {
       <div
         className={`header-menu-item__content ${active ? 'active' : ''} ${
           activeSuperNav.value ? 'menu-item-opened' : ''
-        } ${activeMobile ? 'mobile-active' : ''}`}
+        } ${itemActive === item.type ? 'mobile-active' : ''}`}
       >
         <h3
           className='header-menu-item__content__heading'
-          onClick={handleToggleMobileContent}
+          onClick={() => {
+            handleToggleMobileContent(item);
+          }}
         >
           <div className='heading-toggle'>
             <img src={chevLeft} alt='' />
@@ -143,6 +161,9 @@ const MenuItem = ({ item, idx, headerMenuRef }) => {
             subContent={subContent}
             idx={idx}
             key={`sub-content-${idx}`}
+            headerMenuRef={headerMenuRef}
+            itemActive={itemActive}
+            setItemActive={setItemActive}
           />
         ))}
       </div>
@@ -150,7 +171,12 @@ const MenuItem = ({ item, idx, headerMenuRef }) => {
   );
 };
 
-const SubContent = ({ subContent }) => {
+const SubContent = ({
+  subContent,
+  headerMenuRef,
+  itemActive,
+  setItemActive,
+}) => {
   const [listOpen, setListOpen] = useState(false);
   const handleListOpen = (event) => {
     setListOpen((state) => !state);
@@ -161,8 +187,11 @@ const SubContent = ({ subContent }) => {
     event.preventDefault();
     const target = listItem.path ? listItem.path : '';
     // document.body.classList.remove('prevent-body-scroll');
-    dispatch(changeActiveSuperNav(false));
     navigate(target, { replace: true });
+    scrollTop();
+    dispatch(changeActiveSuperNav(false));
+    setItemActive('');
+    headerMenuRef.current.classList.remove('item-content-opened');
   };
   return (
     <div className='header-menu-item__content__subcontent'>
@@ -217,25 +246,24 @@ const SubContent = ({ subContent }) => {
   );
 };
 
-const LocationItem = () => {
+const LocationItem = ({ itemActive, setItemActive, headerMenuRef }) => {
+  const type = 'location-item';
   const dispatch = useDispatch();
-
   const { currency, country } = useSelector((state) => state);
-
   useEffect(() => {
     const country = JSON.parse(localStorage.getItem('country'));
     const currency = JSON.parse(localStorage.getItem('currency'));
     country && dispatch(changeCurrency(currency));
     currency && dispatch(changeCountry(country));
   }, [dispatch]);
-
-  const [activeMobile, setActiveMobile] = useState(false);
-
   const activeSuperNav = useSelector((state) => state.activeSuperNav);
 
-  const handleToggleMobileContent = (event) => {
-    event.preventDefault();
-    setActiveMobile((state) => !state);
+  const handleToggleMobileContent = () => {
+    headerMenuRef.current.classList.toggle('item-content-opened');
+    setItemActive((state) => {
+      if (itemActive === type) return '';
+      else return type;
+    });
   };
 
   const handleChangeCountry = (ele, idx) => {
@@ -277,7 +305,9 @@ const LocationItem = () => {
     <div className='header-menu-item location-item'>
       <div
         className='header-menu-item__toggle'
-        onClick={handleToggleMobileContent}
+        onClick={() => {
+          handleToggleMobileContent();
+        }}
       >
         <div className='location-item__text'>
           <img src={earth} alt='' />
@@ -292,11 +322,14 @@ const LocationItem = () => {
       <div
         className={`header-menu-item__content ${
           activeSuperNav.value ? 'menu-item-opened' : ''
-        } ${activeMobile ? 'mobile-active' : ''}`}
+        } ${itemActive === type ? 'mobile-active' : ''}`}
       >
         <h3
           className='header-menu-item__content__heading'
-          onClick={handleToggleMobileContent}
+          onClick={(event) => {
+            event.preventDefault();
+            handleToggleMobileContent();
+          }}
         >
           <div className='heading-toggle'>
             <img src={chevLeft} alt='' />

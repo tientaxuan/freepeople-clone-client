@@ -36,7 +36,7 @@ export const ProductCard = ({ cardPath, cardImg, cardTitle }) => {
               backgroundImage: `url(${
                 smallMatch
                   ? cardImg[0]
-                  : isHovering
+                  : !isHovering
                   ? cardImg[0]
                   : cardImg[1]
                   ? cardImg[1]

@@ -5,8 +5,11 @@ import { Pagination } from './pagination/Pagination';
 
 import _ from 'lodash';
 import { useParams } from 'react-router-dom';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import breakPoint from '../../data/breakPoint';
 
 export const CataGridHeader = () => {
+  const smallScreenMatch = useMediaQuery(`(max-width: ${breakPoint.small})`);
   const { type } = useParams();
   return (
     <div className='catalog-grid-header'>
@@ -17,8 +20,12 @@ export const CataGridHeader = () => {
         </div>
         <div className='catalog-grid-header-widget'>
           <div className='catalog-grid-header-widget-container'>
-            <SortBar />
-            <Pagination />
+            {!smallScreenMatch && (
+              <>
+                <SortBar />
+                <Pagination />
+              </>
+            )}
           </div>
         </div>
       </div>

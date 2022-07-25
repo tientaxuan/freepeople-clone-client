@@ -20,9 +20,18 @@ a:focus {
   --margin-left: 10vw;
   --margin-right-big: 3vw;
   --margin-left-big: 3vw;
+  --grid-template-columns: repeat(4, minmax(150px, 1fr));
+  --grid-template-columns-medium: repeat(3, minmax(150px, 1fr));
+  --grid-template-columns-small: repeat(2, minmax(150px, 1fr));
   @include big {
     --margin-right: var(--margin-right-big);
     --margin-left: var(--margin-left-big);
+  }
+  @include medium {
+    --grid-template-columns: var(--grid-template-columns-medium);
+  }
+  @include small {
+    --grid-template-columns: var(--grid-template-columns-small);
   }
 }
 

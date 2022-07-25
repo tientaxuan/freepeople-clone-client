@@ -1,0 +1,11 @@
+@use '../../scss/' as *;
+
+.product-grid {
+  width: 100%;
+  margin-top: 20px;
+  &-container {
+    display: grid;
+    grid-template-columns: var(--grid-template-columns);
+    grid-gap: 40px 20px;
+  }
+}

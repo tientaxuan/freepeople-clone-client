@@ -13,9 +13,12 @@
         // background-color: lightpink;
         .catalog-main-grid {
           margin-left: 20px;
+          @include small {
+            margin-left: 0;
+          }
           flex: 1;
           min-height: 100%;
-          background-color: lightblue;
+          // background-color: lightblue;
         }
       }
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import './layout.scss';
-import { Header, QuickShopModal } from '../components';
+import { Header, QuickShopModal, Footer } from '../components';
 
 // import { useDispatch } from 'react-redux';
 // import { changeCountry } from '../app/slices/countrySlice';
@@ -16,6 +16,7 @@ const Layout = () => {
           <Outlet />
         </div>
       }
+      <Footer />
     </>
   );
 };

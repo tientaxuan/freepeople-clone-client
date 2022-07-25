@@ -14,7 +14,6 @@ import {
   MiddleHero,
   MoreToRead,
   About,
-  Footer,
 } from '../../components';
 import aboutData from '../../data/about';
 import useMediaQuery from '../../hooks/useMediaQuery';
@@ -56,7 +55,6 @@ export const Home = () => {
       />
       <MoreToRead />
       <About aboutData={aboutData} />
-      <Footer />
     </>
   );
 };

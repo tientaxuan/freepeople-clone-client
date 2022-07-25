@@ -12,3 +12,4 @@ export { SideNav } from './side-nav/SideNav';
 export { CataGridHeader } from './catalog-grid-header/CataGridHeader';
 export { ProductGrid } from './product-grid/ProductGrid';
 export { QuickShopModal } from './quick-shop-modal/QuickShopModal';
+export { WidgetBar } from './widget-bar/WidgetBar';
