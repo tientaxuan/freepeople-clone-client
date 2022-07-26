@@ -3,6 +3,8 @@ import './widgetBar.scss';
 import shopByData from '../../data/browerByList';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import chevTop from '../../assets/icon/chev-top.svg';
+import chevLeft from '../../assets/icon/chev-left.svg';
+import filterList from '../../data/filterList';
 
 export const WidgetBar = () => {
   return (
@@ -58,14 +60,66 @@ const ShopBy = () => {
   );
 };
 
+const options = [
+  {
+    display: 'Featured',
+    value: '',
+  },
+  {
+    display: 'Price Low To High',
+    value: 'PRICE_LOW_TO_HIGH',
+  },
+  {
+    display: 'Price High To Low',
+    value: 'PRICE_HIGH_TO_LOW',
+  },
+  {
+    display: 'Newest',
+    value: 'NEWEST',
+  },
+  {
+    display: 'Bestselling',
+    value: 'BESTSELLING',
+  },
+  {
+    display: 'Ratings High To Low',
+    value: 'RATINGS_HIGH_TO_LOW',
+  },
+  {
+    display: 'A-Z',
+    value: 'A-Z',
+  },
+  {
+    display: 'Z-A',
+    value: 'Z-A',
+  },
+];
+
 const SortAndFilter = () => {
+  const [activeModal, setActiveModal] = useState(false);
+  const [activeFilterItem, setActiveFilterItem] = useState('');
+  const handleToggle = (filterItem) => {
+    setActiveFilterItem((state) => {
+      if (filterItem.name === activeFilterItem) return '';
+      else return filterItem.name;
+    });
+  };
+  const handleActiveModal = () => {
+    setActiveModal(true);
+  };
+  const handleCloseModal = () => {
+    setActiveModal(false);
+  };
+
+  //handle query
+
   return (
     <div className='sort-and-filter'>
       <div className='sort-and-filter__container'>
-        <div className='sort-and-filter-toggle'>
+        <div className='sort-and-filter-toggle' onClick={handleActiveModal}>
           <p>Filter + Sort</p>
         </div>
-        <div className='sort-and-filter-modal'>
+        <div className={`sort-and-filter-modal ${activeModal ? 'active' : ''}`}>
           <div className='sort-and-filter-modal__container'>
             <div className='sort-and-filter-modal-title'>
               <h3>Filter and Sort</h3>
@@ -74,6 +128,94 @@ const SortAndFilter = () => {
             <div className='modal-sort'>
               <div className='modal-sort-container'>
                 <h3>Sort</h3>
+                <div className='modal-sort-list'>
+                  {options.map((sortItem, idx) => (
+                    <li
+                      className='modal-sort-item'
+                      key={sortItem.value ? sortItem.value : idx}
+                    >
+                      {sortItem.display}
+                    </li>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className='modal-filter'>
+              <div className='modal-filter-container'>
+                <ul className='modal-filter-list'>
+                  {filterList.map((filterItem, idx) => (
+                    <li className='modal-filter-item' key={filterItem.name}>
+                      <div
+                        className='modal-filter-item-toggle'
+                        onClick={() => {
+                          handleToggle(filterItem);
+                        }}
+                      >
+                        <h3>{filterItem.display}</h3>
+                        <img src={chevTop} alt='' />
+                      </div>
+                      <div
+                        className={`modal-filter-item-content ${
+                          activeFilterItem === filterItem.name ? 'active' : ''
+                        }`}
+                      >
+                        <div className='modal-filter-item-content-container'>
+                          <div
+                            className='modal-filter-content-heading'
+                            onClick={() => {
+                              handleToggle(filterItem);
+                            }}
+                          >
+                            <div className='modal-filter-back'>
+                              <img src={chevLeft} alt='' />
+                              <span>Back</span>
+                            </div>
+                            <div className='modal-filter-content-title'>
+                              <h3>{filterItem.display}</h3>
+                              <p>{`0 Seleceted`}</p>
+                            </div>
+                          </div>
+                          <ul className='modal-filter-content-list'>
+                            {filterItem.list?.map &&
+                              filterItem.list.map((item, idx) => (
+                                <li
+                                  className='filter-content-list-item'
+                                  key={item.value ? item.value : idx}
+                                >
+                                  {item.colorCodeDisplay && (
+                                    <span
+                                      style={{
+                                        backgroundColor: item.colorCodeDisplay,
+                                      }}
+                                    ></span>
+                                  )}
+                                  {item.colorImgDisplay && (
+                                    <span
+                                      style={{
+                                        backgroundImage: `url(${item.colorImgDisplay})`,
+                                      }}
+                                    ></span>
+                                  )}
+
+                                  {`${item.display || item.value} (${
+                                    item.count
+                                  })`}
+                                </li>
+                              ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className='sort-and-filter-modal-button'>
+              <div className='modal-button-container'>
+                <button className='modal-clear'>CLEAR</button>
+                <button className='modal-done' onClick={handleCloseModal}>
+                  DONE
+                </button>
               </div>
             </div>
           </div>

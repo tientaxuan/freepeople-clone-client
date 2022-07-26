@@ -10,7 +10,7 @@
       bottom: 0;
       height: unset;
       width: 350px;
-      @include small {
+      @include mobile {
         width: 85%;
       }
       background: white;
@@ -20,25 +20,24 @@
       .header-menu-close {
         // box-shadow: -2px 0px 5px 1px rgba(0, 0, 0, 0.68);
         position: absolute;
-        top: 0;
+        top: 5px;
         left: -5px;
         transform: translateX(-100%);
         outline: 0;
-        border: 0;
+        padding: 10px;
         background-color: transparent;
         cursor: pointer;
-
+        border: 0.5px solid black;
+        border-radius: 50%;
         img {
+          display: block;
           transition: all 0.1s ease;
-          width: 25px;
-          &:hover {
-            border: 0.5px solid crimson;
-            border-radius: 50%;
-            filter: $filter;
-          }
-          @include small {
-            border: 0.5px solid crimson;
-            border-radius: 50%;
+          width: 20px;
+        }
+        &:hover {
+          border: 0;
+          padding: 11px;
+          img {
             filter: $filter;
           }
         }
@@ -53,9 +52,9 @@
         left: 0;
         overflow-y: auto;
         overscroll-behavior-y: contain;
-        &.item-content-opened {
-          overflow-y: hidden;
-        }
+        // &.item-content-opened {
+        //   overflow-y: hidden;
+        // }
         overflow-x: hidden;
         &-item {
           margin: 0;

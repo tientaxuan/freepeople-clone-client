@@ -21,7 +21,6 @@ import scrollTop from '../../widget/scrollTop';
 
 export const HeaderMenu = () => {
   const inner_ref = useRef(null);
-  const headerMenuRef = useRef(null);
   const activeSuperNav = useSelector((state) => state.activeSuperNav);
   const [itemActive, setItemActive] = useState('');
 
@@ -39,7 +38,6 @@ export const HeaderMenu = () => {
       // document.body.classList.remove('prevent-body-scroll');
       dispatch(changeActiveSuperNav(false));
       setItemActive((state) => '');
-      headerMenuRef.current.classList.remove('item-content-opened');
     }
   };
   const mediumMatch = useMediaQuery(`(max-width: ${breakPoint.medium})`);
@@ -63,7 +61,7 @@ export const HeaderMenu = () => {
         <button className='header-menu-close' onClick={handleClose}>
           <img src={cross} alt='' />
         </button>
-        <div className='header-menu' ref={headerMenuRef}>
+        <div className='header-menu'>
           <div className='header-menu-item-sign'>
             <img src={user} alt='' />
             <Link to='/auth' className=''>
@@ -75,23 +73,18 @@ export const HeaderMenu = () => {
               item={ele}
               idx={idx}
               key={`menu-item-${ele.type}`}
-              headerMenuRef={headerMenuRef}
               itemActive={itemActive}
               setItemActive={setItemActive}
             />
           ))}
-          <LocationItem
-            itemActive={itemActive}
-            setItemActive={setItemActive}
-            headerMenuRef={headerMenuRef}
-          />
+          <LocationItem itemActive={itemActive} setItemActive={setItemActive} />
         </div>
       </div>
     </div>
   );
 };
 
-const MenuItem = ({ item, idx, headerMenuRef, itemActive, setItemActive }) => {
+const MenuItem = ({ item, idx, itemActive, setItemActive }) => {
   const activeSuperNav = useSelector((state) => state.activeSuperNav);
   const [active, setActive] = useState(false);
   console.log(itemActive);
@@ -105,7 +98,6 @@ const MenuItem = ({ item, idx, headerMenuRef, itemActive, setItemActive }) => {
   const navigate = useNavigate();
 
   const handleToggleMobileContent = (item) => {
-    headerMenuRef.current.classList.toggle('item-content-opened');
     setItemActive((state) => {
       if (item.type === itemActive) return '';
       else return item.type;
@@ -161,7 +153,6 @@ const MenuItem = ({ item, idx, headerMenuRef, itemActive, setItemActive }) => {
             subContent={subContent}
             idx={idx}
             key={`sub-content-${idx}`}
-            headerMenuRef={headerMenuRef}
             itemActive={itemActive}
             setItemActive={setItemActive}
           />
@@ -171,12 +162,7 @@ const MenuItem = ({ item, idx, headerMenuRef, itemActive, setItemActive }) => {
   );
 };
 
-const SubContent = ({
-  subContent,
-  headerMenuRef,
-  itemActive,
-  setItemActive,
-}) => {
+const SubContent = ({ subContent, itemActive, setItemActive }) => {
   const [listOpen, setListOpen] = useState(false);
   const handleListOpen = (event) => {
     setListOpen((state) => !state);
@@ -191,7 +177,6 @@ const SubContent = ({
     scrollTop();
     dispatch(changeActiveSuperNav(false));
     setItemActive('');
-    headerMenuRef.current.classList.remove('item-content-opened');
   };
   return (
     <div className='header-menu-item__content__subcontent'>
@@ -246,7 +231,7 @@ const SubContent = ({
   );
 };
 
-const LocationItem = ({ itemActive, setItemActive, headerMenuRef }) => {
+const LocationItem = ({ itemActive, setItemActive }) => {
   const type = 'location-item';
   const dispatch = useDispatch();
   const { currency, country } = useSelector((state) => state);
@@ -259,7 +244,6 @@ const LocationItem = ({ itemActive, setItemActive, headerMenuRef }) => {
   const activeSuperNav = useSelector((state) => state.activeSuperNav);
 
   const handleToggleMobileContent = () => {
-    headerMenuRef.current.classList.toggle('item-content-opened');
     setItemActive((state) => {
       if (itemActive === type) return '';
       else return type;
