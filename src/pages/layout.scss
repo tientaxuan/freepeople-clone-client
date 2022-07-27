@@ -5,13 +5,19 @@
   width: 100%;
   background-color: $body-background;
   min-height: 200vh;
+  @include small {
+    padding-top: 0;
+  }
 }
 
 body.header-shrink {
   .main {
-    padding-top: 160px;
+    padding-top: 130px;
     @include medium {
-      padding-top: 161px;
+      padding-top: 131px;
+    }
+    @include mobile {
+      padding-top: 60px;
     }
   }
 }

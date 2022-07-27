@@ -58,16 +58,20 @@ export const HeaderMenu = () => {
       onClick={handleClickOutside}
     >
       <div className='header-menu-container__inner' ref={inner_ref}>
-        <button className='header-menu-close' onClick={handleClose}>
-          <img src={cross} alt='' />
-        </button>
+        {mediumMatch && (
+          <button className='header-menu-close' onClick={handleClose}>
+            <img src={cross} alt='' />
+          </button>
+        )}
         <div className='header-menu'>
-          <div className='header-menu-item-sign'>
-            <img src={user} alt='' />
-            <Link to='/auth' className=''>
-              Sign In / Sign Up
-            </Link>
-          </div>
+          {mediumMatch && (
+            <div className='header-menu-item-sign'>
+              <img src={user} alt='' />
+              <Link to='/auth' className=''>
+                Sign In / Sign Up
+              </Link>
+            </div>
+          )}
           {menuItem.map((ele, idx) => (
             <MenuItem
               item={ele}
@@ -77,7 +81,12 @@ export const HeaderMenu = () => {
               setItemActive={setItemActive}
             />
           ))}
-          <LocationItem itemActive={itemActive} setItemActive={setItemActive} />
+          {mediumMatch && (
+            <LocationItem
+              itemActive={itemActive}
+              setItemActive={setItemActive}
+            />
+          )}
         </div>
       </div>
     </div>
@@ -87,7 +96,6 @@ export const HeaderMenu = () => {
 const MenuItem = ({ item, idx, itemActive, setItemActive }) => {
   const activeSuperNav = useSelector((state) => state.activeSuperNav);
   const [active, setActive] = useState(false);
-  console.log(itemActive);
   const handleMouseOver = () => {
     setActive(true);
   };
@@ -104,14 +112,16 @@ const MenuItem = ({ item, idx, itemActive, setItemActive }) => {
     });
   };
 
+  const doNothing = () => {};
+
   const mediumMatch = useMediaQuery(`(max-width: ${breakPoint.medium})`);
   return (
     <div
       className={`header-menu-item ${
         !mediumMatch && type === item.type ? 'current' : ''
       }`}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
+      onMouseOver={mediumMatch ? doNothing : handleMouseOver}
+      onMouseOut={mediumMatch ? doNothing : handleMouseOut}
       key={`header-menu-item-${idx}`}
     >
       <div
@@ -128,33 +138,39 @@ const MenuItem = ({ item, idx, itemActive, setItemActive }) => {
         }
       >
         <span>{item.display}</span>
-        <div className='header-menu-item__toggle__icon'>
-          <i className='bx bx-chevron-right'></i>
-        </div>
+        {mediumMatch && (
+          <div className='header-menu-item__toggle__icon'>
+            <i className='bx bx-chevron-right'></i>
+          </div>
+        )}
       </div>
       <div
-        className={`header-menu-item__content ${active ? 'active' : ''} ${
-          activeSuperNav.value ? 'menu-item-opened' : ''
-        } ${itemActive === item.type ? 'mobile-active' : ''}`}
+        className={`header-menu-item__content ${
+          !mediumMatch && active ? 'active' : ''
+        } ${activeSuperNav.value ? 'menu-item-opened' : ''} ${
+          itemActive === item.type ? 'mobile-active' : ''
+        }`}
       >
-        <h3
-          className='header-menu-item__content__heading'
-          onClick={() => {
-            handleToggleMobileContent(item);
-          }}
-        >
-          <div className='heading-toggle'>
-            <img src={chevLeft} alt='' />
-          </div>
-          <div className='item-title-text'>{item.display}</div>
-        </h3>
+        {mediumMatch && (
+          <h3
+            className='header-menu-item__content__heading'
+            onClick={() => {
+              handleToggleMobileContent(item);
+            }}
+          >
+            <div className='heading-toggle'>
+              <img src={chevLeft} alt='' />
+            </div>
+            <div className='item-title-text'>{item.display}</div>
+          </h3>
+        )}
         {item.content.map((subContent, idx) => (
           <SubContent
             subContent={subContent}
             idx={idx}
             key={`sub-content-${idx}`}
-            itemActive={itemActive}
             setItemActive={setItemActive}
+            setActive={setActive}
           />
         ))}
       </div>
@@ -162,7 +178,8 @@ const MenuItem = ({ item, idx, itemActive, setItemActive }) => {
   );
 };
 
-const SubContent = ({ subContent, itemActive, setItemActive }) => {
+const SubContent = ({ subContent, setItemActive, setActive }) => {
+  const mediumMatch = useMediaQuery(`(max-width: ${breakPoint.medium})`);
   const [listOpen, setListOpen] = useState(false);
   const handleListOpen = (event) => {
     setListOpen((state) => !state);
@@ -177,7 +194,9 @@ const SubContent = ({ subContent, itemActive, setItemActive }) => {
     scrollTop();
     dispatch(changeActiveSuperNav(false));
     setItemActive('');
+    setActive(false);
   };
+  const doNothing = () => {};
   return (
     <div className='header-menu-item__content__subcontent'>
       {subContent.title && (
@@ -185,16 +204,18 @@ const SubContent = ({ subContent, itemActive, setItemActive }) => {
           className={`header-menu-item__content__subcontent__title ${
             subContent.main ? 'main-title' : ''
           }`}
-          onClick={handleListOpen}
+          onClick={mediumMatch ? handleListOpen : doNothing}
         >
           <div className='title-text'>{subContent.title}</div>
-          <div className='subcontent-open'>
-            {listOpen ? (
-              <i className='bx bx-minus'></i>
-            ) : (
-              <i className='bx bx-plus'></i>
-            )}
-          </div>
+          {mediumMatch && (
+            <div className='subcontent-open'>
+              {listOpen ? (
+                <i className='bx bx-minus'></i>
+              ) : (
+                <i className='bx bx-plus'></i>
+              )}
+            </div>
+          )}
         </h3>
       )}
       <ul

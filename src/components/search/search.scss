@@ -3,6 +3,9 @@
 .search {
   width: 250px;
   height: 60px;
+  @include mobile {
+    height: 40px;
+  }
   position: relative;
   .search-dropdown {
     background-color: white;
@@ -10,6 +13,9 @@
     font-size: $font-size;
     position: absolute;
     top: 8px;
+    @include mobile {
+      top: 1px;
+    }
     right: 0;
     width: 100%;
     .search-close {
@@ -45,6 +51,9 @@
         border: 0;
         outline: 0;
         padding: 13px;
+        @include mobile {
+          padding: 10px;
+        }
         background-color: transparent;
         @include flex(center, center);
       }

@@ -18,7 +18,8 @@ import breakPoint from '../../data/breakPoint';
 
 export const Header = () => {
   const matchMedium = useMediaQuery(`(max-width: ${breakPoint.medium})`);
-  const shrinkHeight = matchMedium ? 40 : 78;
+  const matchMobile = useMediaQuery(`(max-width: ${breakPoint.modile})`);
+  const shrinkHeight = matchMobile ? 30 : matchMedium ? 40 : 78;
   const stickyRef = useRef(null);
   const shrinkHeader = useCallback(() => {
     const scrollPst =

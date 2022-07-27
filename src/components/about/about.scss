@@ -7,12 +7,15 @@
   padding-bottom: 30px;
   @include big {
     padding: 0 8%;
+    padding-bottom: 30px;
   }
   @include medium {
     padding: 0 5%;
+    padding-bottom: 30px;
   }
   @include small {
     padding: 0 5%;
+    padding-bottom: 30px;
   }
   .about-container {
     border-top: 0.5px solid gray;

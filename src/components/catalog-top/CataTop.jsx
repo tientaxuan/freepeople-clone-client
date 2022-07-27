@@ -13,7 +13,6 @@ export const CataTop = ({ list }) => {
     browserByList[type],
     (ele) => ele.path === pathname,
   ).display;
-  console.log(subTypeDisplay);
   return (
     <div className='catalog-top'>
       <div className='catalog-top-container'>

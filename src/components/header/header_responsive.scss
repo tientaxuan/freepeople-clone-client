@@ -18,6 +18,9 @@
           // background-color: violet;
           width: 100%;
           height: 60px;
+          @include mobile {
+            height: 45px;
+          }
           @include flex(initial, center);
           div {
             width: calc(50% - 0.5px);
@@ -31,6 +34,9 @@
             }
             img {
               transform: scale(0.8);
+              @include mobile {
+                transform: scale(0.55);
+              }
             }
           }
         }
