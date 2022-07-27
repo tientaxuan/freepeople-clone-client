@@ -14,7 +14,7 @@
     transform: scaleY(1);
     transition: all 0.1s ease;
     position: relative;
-    z-index: calc($search-overlay-z-index + 2);
+    z-index: calc($search-overlay-z-index - 1);
     @include flex(center, flex-end);
     padding: 10px var(--margin-right);
     font-size: $font-size;

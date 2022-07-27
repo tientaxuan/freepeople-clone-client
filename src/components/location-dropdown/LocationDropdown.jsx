@@ -149,19 +149,21 @@ export const LocationDropdown = () => {
           <i className='bx bx-chevron-down'></i>
         )}
       </div>
-      <div className={`location-dropdown__content ` + (active ? 'active' : '')}>
-        <Country
-          handleClick={() => {
-            // setActive((state) => !state);
-          }}
-        />
-        <Divider />
-        <Currency
-          handleClick={() => {
-            // setActive((state) => !state);
-          }}
-        />
-      </div>
+      {active && (
+        <div className='location-dropdown__content'>
+          <Country
+            handleClick={() => {
+              // setActive((state) => !state);
+            }}
+          />
+          <Divider />
+          <Currency
+            handleClick={() => {
+              // setActive((state) => !state);
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };

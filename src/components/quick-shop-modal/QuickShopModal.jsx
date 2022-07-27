@@ -5,11 +5,10 @@ import modalData from '../../data/modalData';
 import chevLef from '../../assets/icon/chev-left.svg';
 import { Navigation } from 'swiper';
 import cross from '../../assets/icon/cross.svg';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { changeActiveModal } from '../../app/slices/activeModal';
 
 export const QuickShopModal = () => {
-  const activeModal = useSelector((state) => state.activeModal.value);
   const dispatch = useDispatch();
   const sizeArr = ['XS', 'S', 'M', 'L', 'XL'];
   const prevBtnRef = useRef(null);
@@ -24,7 +23,7 @@ export const QuickShopModal = () => {
     dispatch(changeActiveModal(false));
   };
   return (
-    <div className={`modal ${activeModal ? 'active' : ''}`}>
+    <div className='modal'>
       <div className='modal-container'>
         <div className='modal-content'>
           <div className='modal-slider'>
